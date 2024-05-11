@@ -1253,3 +1253,15 @@ $border-color_1: rgba(19, 53, 123, 0.6) rgba(19, 53, 123, 0.6) rgba(19, 53, 123,
 		background: var(--bs-light);
 	}
 }
+
+.social-btn {
+	position: fixed;
+	right: 30px;
+	display: flex;
+	width: 45px;
+	height: 45px;
+	align-items: center;
+	justify-content: center;
+	transition: 0.5s;
+	z-index: 99;
+}

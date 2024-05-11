@@ -44,3 +44,13 @@ $enable-negative-margins: true;
 		}
 	}
 }
+
+.bottom {
+    &-10 {
+        bottom: 10% !important;
+    }
+
+    &-15 {
+        bottom: 15% !important;
+    }
+}
