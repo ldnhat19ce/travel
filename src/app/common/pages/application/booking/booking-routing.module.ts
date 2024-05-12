@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BookingFireworkComponent } from './booking-firework/booking-firework.component';
 
 const routes: Routes = [
-    { path: 'firework', component: BookingFireworkComponent },
+    { path: 'firework/:content', component: BookingFireworkComponent },
 ];
 
 @NgModule({
