@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LanguageUtil } from '../../common/utils/language.util';
+import { LocalStorageService } from '../../common/services/local-storage.service';
+import { CommonConstant } from '../../common/utils/constant/common.constant';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-header',
@@ -7,11 +10,16 @@ import { LanguageUtil } from '../../common/utils/language.util';
     styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnInit {
-    currentLang: string = LanguageUtil.getLanguage();
+    constructor(private _localStorageService: LocalStorageService
+    ) {
 
-    constructor() {}
+    }
 
     ngOnInit(): void {
-        console.log(this.currentLang)
+    }
+
+    onChangeLanguage(language: string) {
+        this._localStorageService.setItem(CommonConstant.LOCAL_CURRENT_LANG, language);
+        location.reload();
     }
 }

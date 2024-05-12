@@ -29,7 +29,6 @@ export const appConfig: ApplicationConfig = {
         provideHttpClient(withFetch()),
         importProvidersFrom(
             TranslateModule.forRoot({
-                defaultLanguage: 'vn',
                 loader: {
                     provide: TranslateLoader,
                     useFactory: httpTranslateLoaderFactory,
