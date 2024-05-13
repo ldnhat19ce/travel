@@ -1,5 +1,5 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Booking } from '../model/booking.model';
 import { Response } from '../model/response.model';
@@ -9,8 +9,9 @@ import { Observable } from 'rxjs';
     providedIn: 'root',
 })
 export class BookingService {
+    private _httpClient = inject(HttpClient);
 
-    constructor(private _httpClient: HttpClient) {}
+    constructor() {}
 
     getAllCategory(page: number, len: number): Observable<HttpResponse<Response<Booking[]>>> {
         let url = `${environment.apiUrl}/booking?page=${page}&len=${len}`;
