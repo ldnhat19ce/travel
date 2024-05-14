@@ -8,9 +8,10 @@ import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideServiceWorker } from '@angular/service-worker';
-import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { httpTranslateLoaderFactory } from './common/utils/translate-browser.loader';
+import { jwtInterceptor } from './common/interceptor/jwt.interceptor';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -26,7 +27,7 @@ export const appConfig: ApplicationConfig = {
             enabled: !isDevMode(),
             registrationStrategy: 'registerWhenStable:30000',
         }),
-        provideHttpClient(withFetch()),
+        provideHttpClient(withFetch(), withInterceptors([jwtInterceptor])),
         importProvidersFrom(
             TranslateModule.forRoot({
                 loader: {
@@ -35,6 +36,6 @@ export const appConfig: ApplicationConfig = {
                     deps: [HttpClient],
                 },
             })
-        ),
+        )
     ],
 };
