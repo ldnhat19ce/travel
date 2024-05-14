@@ -28,8 +28,8 @@ develop-deploy:
         - sshpass -V
         - export SSHPASS=$CI_USER_PASS
         - sshpass -e ssh -tt -o StrictHostKeyChecking=no $CI_USERNAME@$CI_USER_HOST docker container stop travel || true
-        - sshpass -e ssh -tt -o StrictHostKeyChecking=no $CI_USERNAME@$CI_USER_HOST docker container rm travel | true
-        - sshpass -e ssh -tt -o StrictHostKeyChecking=no $CI_USERNAME@$CI_USER_HOST docker rmi 123456nhat/travel:0.0.1 || true
+        - sshpass -e ssh -tt -o StrictHostKeyChecking=no $CI_USERNAME@$CI_USER_HOST docker rm -f travel || true
+        - sshpass -e ssh -tt -o StrictHostKeyChecking=no $CI_USERNAME@$CI_USER_HOST docker rmi -f 123456nhat/travel:0.0.1 || true
         - sshpass -e ssh -tt -o StrictHostKeyChecking=no $CI_USERNAME@$CI_USER_HOST docker run -d -p 4200:4000 --name travel 123456nhat/travel:0.0.1
 
 
