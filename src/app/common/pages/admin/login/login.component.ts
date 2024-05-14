@@ -1,20 +1,31 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { AuthenticationService } from '../../../services/authentication.service';
+import { AuthenticationService } from '../../../services/auth/authentication.service';
 import { FormsModule } from '@angular/forms';
 import { Error } from '../../../model/error.model';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { LocalStorageService } from '../../../services/local-storage.service';
+import { CommonConstant } from '../../../utils/constant/common.constant';
+import { Authentication } from '../../../model/authentication.model';
+import { Response } from '../../../model/response.model';
+import { Data } from '../../../model/data.model';
+import { Router } from '@angular/router';
+import { AuthStore } from '../../../store/auth.store';
 
 @Component({
     selector: 'app-login',
     standalone: true,
     imports: [TranslateModule, FormsModule],
+    providers: [AuthStore],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss',
 })
 export class LoginComponent {
     private _authenticationService = inject(AuthenticationService);
     private _translateService = inject(TranslateService);
+    private _localStorageService = inject(LocalStorageService);
+    private _router = inject(Router);
+    private _authStore = inject(AuthStore);
 
     email: WritableSignal<string> = signal<string>('');
     password: WritableSignal<string> = signal<string>('');
@@ -41,10 +52,16 @@ export class LoginComponent {
             this._authenticationService
                 .adminAuthentication({ email: this.email().trim(), password: this.password().trim() })
                 .subscribe({
-                    next: () => {
-                        console.log("login success")
+                    next: (res: HttpResponse<Response<Authentication>>) => {
+                        if(res !== null && res !== undefined) {
+                            let authentication: Data<Authentication> = res.body?.data || {} as Data<Authentication>;
+                            this._localStorageService.setItem(CommonConstant.LOCAL_USER, JSON.stringify(authentication));
+                            this._authStore.updateIsAdmin(true);
+                            this._router.navigateByUrl("/admin/dashboard");
+                        }
                     },
                     error: (err: HttpErrorResponse) => {
+                        this._authStore.updateIsAdmin(false);
                         this.resultError = err.error;
                     }
                 });

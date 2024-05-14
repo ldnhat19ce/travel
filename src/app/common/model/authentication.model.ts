@@ -4,4 +4,5 @@ export interface Authentication {
     refreshToken: string;
     userId: number;
     tokenType: string;
+    admin: boolean;
 }
