@@ -1,3 +1,4 @@
+import { isAdmin } from './../../../store/auth.store';
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from '../../../services/auth/authentication.service';
@@ -25,7 +26,6 @@ export class LoginComponent {
     private _translateService = inject(TranslateService);
     private _localStorageService = inject(LocalStorageService);
     private _router = inject(Router);
-    private _authStore = inject(AuthStore);
 
     email: WritableSignal<string> = signal<string>('');
     password: WritableSignal<string> = signal<string>('');
@@ -34,6 +34,8 @@ export class LoginComponent {
     errorPassword: WritableSignal<string> = signal<string>('');
 
     resultError: Error = {} as Error;
+
+    isAdmin = isAdmin;
 
     login() {
         let isValid = true;
@@ -56,12 +58,12 @@ export class LoginComponent {
                         if(res !== null && res !== undefined) {
                             let authentication: Data<Authentication> = res.body?.data || {} as Data<Authentication>;
                             this._localStorageService.setItem(CommonConstant.LOCAL_USER, JSON.stringify(authentication));
-                            this._authStore.updateIsAdmin(true);
+                            this.isAdmin.set(true);
                             this._router.navigateByUrl("/admin/dashboard");
                         }
                     },
                     error: (err: HttpErrorResponse) => {
-                        this._authStore.updateIsAdmin(false);
+                        this.isAdmin.set(false);
                         this.resultError = err.error;
                     }
                 });

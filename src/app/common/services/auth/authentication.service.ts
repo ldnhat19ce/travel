@@ -6,6 +6,8 @@ import { Response } from '../../model/response.model';
 import { environment } from '../../../../environments/environment';
 import { LocalStorageService } from '../local-storage.service';
 import { CommonConstant } from '../../utils/constant/common.constant';
+import { isAdmin } from '../../store/auth.store';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root',
@@ -13,6 +15,9 @@ import { CommonConstant } from '../../utils/constant/common.constant';
 export class AuthenticationService {
     private _httpClient = inject(HttpClient);
     private _localStorageService = inject(LocalStorageService);
+    private _router = inject(Router);
+
+    private _isAdminSignal = isAdmin;
 
     constructor() {}
 
@@ -28,6 +33,12 @@ export class AuthenticationService {
         return this._httpClient.post<Response<Authentication>>(url, params, {
             observe: 'response',
         });
+    }
+
+    adminLogout() {
+        this._isAdminSignal.set(false);
+        this._localStorageService.setItem(CommonConstant.LOCAL_USER, null);
+        this._router.navigateByUrl("/");
     }
 
     isTokenExpired(expiredTime: number): boolean {
