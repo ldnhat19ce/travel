@@ -1,4 +1,4 @@
-import { TransformBookingPipe } from './transform-booking.pipe';
+import { TransformBookingPipe } from './transform-category.pipe';
 
 describe('TransformBookingPipe', () => {
   it('create an instance', () => {

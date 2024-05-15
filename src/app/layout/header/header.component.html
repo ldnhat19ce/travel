@@ -22,17 +22,30 @@
                             <i class="fas fa-globe me-2"></i>{{ 'lbl.header.002' | translate }}</small></a>
                     <div class="dropdown-menu rounded">
                         <a role="button" (click)="onChangeLanguage('vn')" class="dropdown-item">
-                            <svg width="24" height="24" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><path fill="#da251d" d="M0 0h30v20H0z"/><path fill="#ff0" d="m15 4-3.53 10.85 9.24-6.7H9.29l9.24 6.7z"/></svg>
+                            <svg width="24" height="24" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#da251d" d="M0 0h30v20H0z" />
+                                <path fill="#ff0" d="m15 4-3.53 10.85 9.24-6.7H9.29l9.24 6.7z" />
+                            </svg>
                             Tiếng việt
                         </a>
                         <a (click)="onChangeLanguage('us')" class="dropdown-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 30" width="24" height="24"><clipPath id="a"><path d="M25 15h25v15zv15H0zH0V0zV0h25z"/></clipPath><path d="M0 0v30h50V0z" fill="#012169"/><path d="m0 0 50 30m0-30L0 30" stroke="#fff" stroke-width="6"/><path d="m0 0 50 30m0-30L0 30" clip-path="url(#a)" stroke="#C8102E" stroke-width="4"/><path d="M-1 11h22V-1h8v12h22v8H29v12h-8V19H-1z" fill="#C8102E" stroke="#FFF" stroke-width="2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 30" width="24" height="24">
+                                <clipPath id="a">
+                                    <path d="M25 15h25v15zv15H0zH0V0zV0h25z" />
+                                </clipPath>
+                                <path d="M0 0v30h50V0z" fill="#012169" />
+                                <path d="m0 0 50 30m0-30L0 30" stroke="#fff" stroke-width="6" />
+                                <path d="m0 0 50 30m0-30L0 30" clip-path="url(#a)" stroke="#C8102E" stroke-width="4" />
+                                <path d="M-1 11h22V-1h8v12h22v8H29v12h-8V19H-1z" fill="#C8102E" stroke="#FFF"
+                                    stroke-width="2" />
+                            </svg>
                             English
                         </a>
                     </div>
                 </div>
                 <!-- <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>Register</small></a> -->
-                <a role="link" routerLink="/admin/authentication"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
+                <a role="link" routerLink="/admin/authentication"><small class="me-3 text-light"><i
+                            class="fa fa-sign-in-alt me-2"></i>Login</small></a>
                 <!-- <div class="dropdown">
                     <a href="#" class="dropdown-toggle text-light" data-bs-toggle="dropdown"><small><i
                                 class="fa fa-home me-2"></i> My Dashboard</small></a>
@@ -62,7 +75,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
-                <a routerLink="/" class="nav-item nav-link" [routerLinkActive]="'active'"
+                @for (item of categories; track item.id) {
+                    @if (item.level === 0) {
+                        <a routerLink="/x" class="nav-item nav-link" [routerLinkActive]="'active'"
+                            [routerLinkActiveOptions]="{ exact: true }">{{ item | transformCategory: currentLang }}</a>
+                    }
+                }
+                <!-- <a routerLink="/" class="nav-item nav-link" [routerLinkActive]="'active'"
                     [routerLinkActiveOptions]="{ exact: true }">{{"lbl.header.001" | translate}}</a>
                 <a href="/" class="nav-item nav-link" [routerLinkActive]="'active'"
                     [routerLinkActiveOptions]="{ exact: true }">{{ 'lbl.header.005' | translate }}</a>
@@ -82,9 +101,9 @@
                     </div>
                 </div>
                 <a href="contact.html" class="nav-item nav-link" [routerLinkActive]="'active'"
-                    [routerLinkActiveOptions]="{ exact: true }">{{ 'lbl.header.008' | translate }}</a>
+                    [routerLinkActiveOptions]="{ exact: true }">{{ 'lbl.header.008' | translate }}</a> -->
             </div>
-            <a href="" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Book Now</a>
+            <!-- <a href="" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Book Now</a> -->
         </div>
     </nav>
 

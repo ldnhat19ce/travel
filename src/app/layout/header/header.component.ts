@@ -1,12 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { LocalStorageService } from '../../common/services/local-storage.service';
 import { CommonConstant } from '../../common/utils/constant/common.constant';
-import { BookingService } from '../../common/services/booking.service';
-import { Booking } from '../../common/model/booking.model';
+import { CategoryService } from '../../common/services/category.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Response } from '../../common/model/response.model';
 import { Error } from '../../common/model/error.model';
 import { LanguageUtil } from '../../common/utils/language.util';
+import { Category } from '../../common/model/category.model';
 
 @Component({
     selector: 'app-header',
@@ -15,10 +15,10 @@ import { LanguageUtil } from '../../common/utils/language.util';
 })
 export class HeaderComponent implements OnInit {
 
-    private _bookingService = inject(BookingService);
+    private _categoryService = inject(CategoryService);
     private _localStorageService = inject(LocalStorageService);
 
-    bookings: Booking[] = [] as Booking[];
+    categories: Category[] = [] as Category[];
     currentLang: string = "vn";
 
     constructor() {
@@ -28,10 +28,10 @@ export class HeaderComponent implements OnInit {
     ngOnInit(): void {
         this.currentLang = LanguageUtil.getLanguage(this._localStorageService);
 
-        this._bookingService.getAllCategory(1, 10).subscribe({
-            next: (res: HttpResponse<Response<Booking[]>>) => {
+        this._categoryService.getAllCategory(1, 10).subscribe({
+            next: (res: HttpResponse<Response<Category[]>>) => {
                 if(res !== null && res !== undefined) {
-                    this.bookings = res.body?.data?.result || [] as Booking[];
+                    this.categories = res.body?.data?.result || [] as Category[];
                 }
             },
             error: (err: HttpErrorResponse) => {
