@@ -5,6 +5,7 @@ export interface Category {
     level: number;
     sort: number;
     type: string;
-    cId: number;
+    parentId: number;
     modifiedAt: string;
+    hasChild: number;
 }

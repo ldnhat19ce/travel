@@ -1,8 +1,8 @@
-import { TransformBookingPipe } from './transform-category.pipe';
+import { TransformCategoryPipe } from './transform-category.pipe';
 
-describe('TransformBookingPipe', () => {
+describe('TransformCategoryPipe', () => {
   it('create an instance', () => {
-    const pipe = new TransformBookingPipe();
+    const pipe = new TransformCategoryPipe();
     expect(pipe).toBeTruthy();
   });
 });

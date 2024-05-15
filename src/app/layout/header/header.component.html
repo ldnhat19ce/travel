@@ -76,10 +76,27 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
                 @for (item of categories; track item.id) {
-                    @if (item.level === 0) {
-                        <a routerLink="/x" class="nav-item nav-link" [routerLinkActive]="'active'"
-                            [routerLinkActiveOptions]="{ exact: true }">{{ item | transformCategory: currentLang }}</a>
-                    }
+                @if (item.level === 0) {
+                @if (item.hasChild > 0) {
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ item | transformCategory:
+                        currentLang }}</a>
+                    <div class="dropdown-menu m-0">
+                        @for (item2 of categories; track item2.id) {
+
+                            @if (item2.parentId === item.id) {
+                                <a routerLink="/booking/firework/dat-tim-ho-ve-xem-phao-hoa-truc-tuyen" routerLinkActive="active" [routerLinkActive]="'active'" class="dropdown-item">
+                                    {{ item2 | transformCategory: currentLang }}
+                                </a>
+                            }
+                        }
+                    </div>
+                </div>
+                } @else {
+                <a routerLink="/x" class="nav-item nav-link" [routerLinkActive]="'active'"
+                    [routerLinkActiveOptions]="{ exact: true }">{{ item | transformCategory: currentLang }}</a>
+                }
+                }
                 }
                 <!-- <a routerLink="/" class="nav-item nav-link" [routerLinkActive]="'active'"
                     [routerLinkActiveOptions]="{ exact: true }">{{"lbl.header.001" | translate}}</a>
