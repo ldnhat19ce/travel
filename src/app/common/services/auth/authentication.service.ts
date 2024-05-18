@@ -38,7 +38,7 @@ export class AuthenticationService {
     adminLogout() {
         this._isAdminSignal.set(false);
         this._localStorageService.setItem(CommonConstant.LOCAL_USER, null);
-        this._router.navigateByUrl("/");
+        this._router.navigateByUrl("/authentication");
     }
 
     isTokenExpired(expiredTime: number): boolean {
@@ -50,20 +50,45 @@ export class AuthenticationService {
     }
 
     isAdmin(): boolean {
-        let authentication: Authentication = JSON.parse(this._localStorageService.getItem(CommonConstant.LOCAL_USER, null));
-        if(authentication) {
-            if(authentication.admin) {
-                return true;
+        if(this.haveLocalStorage(CommonConstant.LOCAL_USER)) {
+            let authentication: Authentication = JSON.parse(this._localStorageService.getItem(CommonConstant.LOCAL_USER, null));
+            if(authentication) {
+                if(authentication.admin) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    isLogin(): boolean {
+        if(this.haveLocalStorage(CommonConstant.LOCAL_USER)) {
+            let authentication: Authentication = JSON.parse(this._localStorageService.getItem(CommonConstant.LOCAL_USER, null));
+            if(authentication) {
+                if(authentication.admin) {
+                    return true;
+                }
             }
         }
         return false;
     }
 
     getUserToken() {
-        let authentication: Authentication = JSON.parse(this._localStorageService.getItem(CommonConstant.LOCAL_USER, null));
-        if(authentication) {
-            return authentication.token;
+        if(this.haveLocalStorage(CommonConstant.LOCAL_USER)) {
+            let authentication: Authentication = JSON.parse(this._localStorageService.getItem(CommonConstant.LOCAL_USER, null));
+            if(authentication) {
+                return authentication.token;
+            }
         }
+
         return "";
+    }
+
+    private haveLocalStorage(key: string) {
+        let localStorage = this._localStorageService.getItem(key, null);
+        if(localStorage) {
+            return true;
+        }
+        return false;
     }
 }
