@@ -64,11 +64,11 @@
     </div> -->
 
     @if (currentLang === 'vn') {
-        <div class="container py-5" [innerHTML]="post.content">
+        <div class="container py-5 ql-editor" [innerHTML]="post.content">
 
         </div>
     } @else {
-        <div class="container py-5" [innerHTML]="post.contentEng">
+        <div class="container py-5 ql-editor" [innerHTML]="post.contentEng">
 
         </div>
     }
