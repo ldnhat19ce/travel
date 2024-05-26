@@ -67,8 +67,7 @@
 <div class="container-fluid position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
         <a routerLink="/" class="navbar-brand p-0">
-            <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Travela</h1>
-            <!-- <img src="./assets/img/logo.png" alt="Logo"> -->
+            <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>HeroTravelDN</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="fa fa-bars"></span>
@@ -85,7 +84,7 @@
                         @for (item2 of categories; track item2.id) {
 
                             @if (item2.parentId === item.id) {
-                                <a routerLink="/booking/firework/dat-tim-ho-ve-xem-phao-hoa-truc-tuyen" routerLinkActive="active" [routerLinkActive]="'active'" class="dropdown-item">
+                                <a routerLink="/post/{{ item2.id }}/{{ item2.url }}" routerLinkActive="active" [routerLinkActive]="'active'" class="dropdown-item">
                                     {{ item2 | transformCategory: currentLang }}
                                 </a>
                             }

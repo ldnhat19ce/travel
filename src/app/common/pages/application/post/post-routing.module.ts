@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BookingFireworkComponent } from './booking-firework/booking-firework.component';
+import { PostComponent } from './post.component';
 
 const routes: Routes = [
-    { path: 'firework/:content', component: BookingFireworkComponent },
+    { path: ':id/:content', component: PostComponent },
 ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
 })
-export class BookingRoutingModule {}
+export class PostRoutingModule {}

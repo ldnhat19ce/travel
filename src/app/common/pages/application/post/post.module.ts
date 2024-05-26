@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { BookingRoutingModule } from './booking-routing.module';
+import { PostRoutingModule } from './post-routing.module';
 
 @NgModule({
     declarations: [],
     imports: [
         CommonModule,
-        BookingRoutingModule],
+        PostRoutingModule],
 })
-export class BookingModule {}
+export class PostModule {}
