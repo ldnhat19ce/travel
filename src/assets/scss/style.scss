@@ -57,3 +57,7 @@ $enable-negative-margins: true;
         bottom: 15% !important;
     }
 }
+
+.ql-editor img {
+    @extend .img-fluid;
+}

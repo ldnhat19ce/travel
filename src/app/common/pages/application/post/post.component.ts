@@ -6,6 +6,7 @@ import { PostService } from '../../../services/post.service';
 import { Post } from '../../../model/post.model';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { LanguageUtil } from '../../../utils/language.util';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
     selector: 'app-post',
@@ -23,6 +24,9 @@ export class PostComponent implements OnInit {
     post: Post = {} as Post;
 
     currentLang: string = "vn";
+    // baseUrl: string = CommonConstant.BASE_URL;
+    baseUrl: string = "http://103.162.20.137:8080/api/v1";
+    imageUrl: string = environment.imgUrl;
 
     ngOnInit(): void {
         this.currentLang = LanguageUtil.getLanguage(this._localStorageService);
