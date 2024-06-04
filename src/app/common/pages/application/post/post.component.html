@@ -42,7 +42,7 @@
                 <p class="text-white mb-4">
                     Quý khách chỉ cần cung cấp nhu cầu của mình cho từng loại vé thông qua Hotline: 0876.692.882 hoặc theo Form đặt vé bên dưới. Với kinh nghiệm phân biệt được các dòng vé và các kênh phân phối sẽ giúp quý khách có được những tấm vé xem pháo hoa một cách nhanh chóng và an toàn.
                 </p>
-                <a href="#" class="btn btn-light text-primary rounded-pill py-3 px-5 mt-2">Read More</a>
+                <!-- <a href="#" class="btn btn-light text-primary rounded-pill py-3 px-5 mt-2">Read More</a> -->
             </div>
             <div class="col-lg-6">
                 <h1 class="text-white mb-3">ĐẶT TÌM HỘ VÉ XEM PHÁO HOA TRỰC TUYẾN</h1>
@@ -50,7 +50,27 @@
                     With Travela. Get More Deal Offers Here.</p> -->
                 <form>
                     <div class="row g-3">
-                        <div class="col-md-6">
+                        @for (item of postFormList; track item.id) {
+                            <div [ngClass]="item.oneRow ? 'col-12' : 'col-md-6'">
+                                <div class="form-floating">
+                                    @if (item.fieldType === 'INPUT') {
+                                        <input type="text" class="form-control bg-white border-0" [id]="item.fieldId"
+                                            [placeholder]="item.fieldPlaceholder">
+                                        } @else if (item.fieldType === 'DROPDOWN') {
+                                        <select class="form-select bg-white border-0" [id]="item.fieldId">
+                                            @for (drp of item.fieldHelper1 | convertDropdown; track drp.value) {
+                                            <option [value]="drp.value">{{ drp.label }}</option>
+                                            }
+                                        </select>
+                                        } @else if (item.fieldType === 'TEXT_AREA') {
+                                        <textarea class="form-control bg-white border-0" [placeholder]="item.fieldPlaceholder" [id]="item.fieldId"
+                                            style="height: 100px"></textarea>
+                                        }
+                                        <label for="{{ item.fieldId }}">{{ item.fieldName }}</label>
+                                </div>
+                            </div>
+                        }
+                        <!-- <div class="col-md-6">
                             <div class="form-floating">
                                 <input type="text" class="form-control bg-white border-0" id="name"
                                     placeholder="Tên của bạn">
@@ -63,7 +83,7 @@
                                     placeholder="Email của bạn">
                                 <label for="email">Email</label>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- <div class="col-md-6">
                             <div class="form-floating date" id="date3" data-target-input="nearest">
                                 <input type="text" class="form-control bg-white border-0" id="datetime"
@@ -71,7 +91,7 @@
                                 <label for="datetime">Date & Time</label>
                             </div>
                         </div> -->
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="form-floating">
                                 <select class="form-select bg-white border-0" id="select1">
                                     <option value="1">Khán đài A1</option>
@@ -110,7 +130,7 @@
                                     placeholder="Địa chỉ nhận vé giấy(nhà hoặc khách sạn)">
                                 <label for="phone">Địa chỉ nhận vé giấy(nhà hoặc khách sạn)</label>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- <div class="col-md-6">
                             <div class="form-floating">
                                 <select class="form-select bg-white border-0" id="SelectPerson">
@@ -132,13 +152,13 @@
                                 <label for="CategoriesSelect">Categories</label>
                             </div>
                         </div> -->
-                        <div class="col-12">
+                        <!-- <div class="col-12">
                             <div class="form-floating">
                                 <textarea class="form-control bg-white border-0" placeholder="Nhận vé qua zalo theo số điện thoại: 0905.abc.xyz, gửi qua địa chỉ email hoặc nhận qua các hình thức khác"
                                     id="message" style="height: 100px"></textarea>
                                 <label for="message">Nhận vé điện tử(vui lòng nhập chi tiết)</label>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-12">
                             <button class="btn btn-primary text-white w-100 py-3" type="submit">Book Now</button>
                         </div>
