@@ -7,14 +7,49 @@ import { Meta, Title } from '@angular/platform-browser';
 export class SeoService {
     constructor(private meta: Meta, private titleService: Title) {}
 
-    public setMetaDescription(content: string) {
+    setMetaDescription(content: string) {
         this.meta.updateTag({
-            name: 'description',
+            property: 'description',
             content: content,
         });
     }
 
-    public setMetaTitle(title: string) {
+    setMetaTitle(title: string) {
         this.titleService.setTitle(title);
+    }
+
+    setMetaOgTitle(content: string) {
+        this.meta.updateTag({
+            property: 'og:title',
+            content: content
+        });
+    }
+
+    setMetaOgDescription(content: string) {
+        this.meta.updateTag({
+            property: 'og:description',
+            content: content
+        });
+    }
+
+    setMetaOgUrl(content: string) {
+        this.meta.updateTag({
+            property: 'og:url',
+            content: content
+        });
+    }
+
+    setMetaTwitterTitle(content: string) {
+        this.meta.updateTag({
+            name: 'twitter:title',
+            content: content
+        });
+    }
+
+    setMetaTwitterDescription(content: string) {
+        this.meta.updateTag({
+            name: 'twitter:description',
+            content: content
+        });
     }
 }

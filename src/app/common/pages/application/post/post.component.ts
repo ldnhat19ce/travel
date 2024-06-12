@@ -1,3 +1,4 @@
+import { SeoService } from './../../../services/seo.service';
 import { PostFormResult } from './../../../model/post-form-result.model';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -34,6 +35,7 @@ export class PostComponent implements OnInit {
     private _localStorageService = inject(LocalStorageService);
     private _postFormService = inject(PostFormService);
     private _postFormResultService = inject(PostFormResultService);
+    private _seoService = inject(SeoService);
 
     post: Post = {} as Post;
 
@@ -55,6 +57,13 @@ export class PostComponent implements OnInit {
                         if (ValidationUtil.isNotNullAndNotUndefined(res)) {
                             this.post = res.body || ({} as Post);
                             this.postId = this.post.id;
+                            this._seoService.setMetaTitle(this.post.name);
+                            this._seoService.setMetaDescription(this.post.name);
+                            this._seoService.setMetaOgTitle(this.post.name);
+                            this._seoService.setMetaOgDescription(this.post.name);
+                            this._seoService.setMetaTwitterTitle(this.post.name);
+                            this._seoService.setMetaTwitterDescription(this.post.name);
+                            this._seoService.setMetaOgUrl("https://herotraveldn.com/post/" + this.post.id + "/" + route["url"]);
                             this.getPostFormList();
                         }
                     });
