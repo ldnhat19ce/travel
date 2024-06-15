@@ -16,6 +16,7 @@ import { ConvertDropdownPipe } from '../../../pipe/convert-dropdown.pipe';
 import { FormResult } from '../../../model/form-result.model';
 import { PostFormResultService } from '../../../services/post-form-result.service';
 import { ToastComponent } from '../../general/toast/toast.component';
+import { SafeHTMLPipe } from '../../../pipe/safe-html.pipe';
 
 @Component({
     selector: 'app-post',
@@ -25,6 +26,7 @@ import { ToastComponent } from '../../general/toast/toast.component';
         CommonModule,
         ConvertDropdownPipe,
         ToastComponent,
+        SafeHTMLPipe
     ],
     templateUrl: './post.component.html',
     styleUrl: './post.component.scss',

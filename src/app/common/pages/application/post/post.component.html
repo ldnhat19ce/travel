@@ -18,11 +18,11 @@
 
 <div class="container-fluid py-5 bg-white">
     @if (currentLang === 'vn') {
-    <div class="container py-5 ql-editor" [innerHTML]="post.content">
+    <div class="container py-5 ql-editor" [innerHTML]="post.content | safeHTML">
 
     </div>
     } @else {
-    <div class="container py-5 ql-editor" [innerHTML]="post.contentEng">
+    <div class="container py-5 ql-editor" [innerHTML]="post.contentEng | safeHTML">
 
     </div>
     }
