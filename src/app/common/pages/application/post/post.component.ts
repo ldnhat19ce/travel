@@ -127,7 +127,7 @@ export class PostComponent implements OnInit {
     }
 
     private getPostFormList() {
-        this._postFormService.getAllByPostId(this.postId).subscribe((res) => {
+        this._postFormService.getLatestByPostId(this.postId).subscribe((res) => {
             if (ValidationUtil.isNotNullAndNotUndefined(res)) {
                 this.postFormList = res.body || [];
             }

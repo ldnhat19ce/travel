@@ -14,4 +14,9 @@ export class PostFormService {
         let url = `${environment.apiUrl}/post-form/${postId}`;
         return this._httpClient.get<PostForm[]>(url, { observe: 'response' });
     }
+
+    getLatestByPostId(postId: number): Observable<HttpResponse<PostForm[]>> {
+        let url = `${environment.apiUrl}/post-form/latest/${postId}`;
+        return this._httpClient.get<PostForm[]>(url, { observe: 'response' });
+    }
 }

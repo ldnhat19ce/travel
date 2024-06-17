@@ -34,21 +34,18 @@
     <div class="container py-5">
         <div class="row g-5 align-items-center">
             <div class="col-lg-6">
-                <h5 class="section-booking-title pe-3">Đặt vé</h5>
-                <h1 class="text-white mb-4">Đặt vé online</h1>
+                <h5 class="section-booking-title pe-3">{{ postFormList[0].defName1 }}</h5>
+                <h1 class="text-white mb-4">{{ postFormList[0].defName2 }}</h1>
                 <p class="text-white mb-4">
-                    Nhằm giúp du khách tránh gặp phải những việc như: không mua được vé xem hoặc mua phải vé giả và
-                    những rũi ro trong việc giao dịch thì chúng tôi mở ra chuyên mục: “Hỗ trợ tìm” mua vé xem pháo hoa
-                    Đà Nẵng cho đêm chung kết.
+                    {{ postFormList[0].defContent1 }}
                 </p>
                 <p class="text-white mb-4">
-                    Quý khách chỉ cần cung cấp nhu cầu của mình cho từng loại vé thông qua Hotline: 0876.692.882 hoặc
-                    theo Form đặt vé bên dưới. Với kinh nghiệm phân biệt được các dòng vé và các kênh phân phối sẽ giúp
-                    quý khách có được những tấm vé xem pháo hoa một cách nhanh chóng và an toàn.
+                    {{ postFormList[0].defContent2 }}
                 </p>
             </div>
+
             <div class="col-lg-6">
-                <h1 class="text-white mb-3">ĐẶT TÌM HỘ VÉ XEM PHÁO HOA TRỰC TUYẾN</h1>
+                <h1 class="text-white mb-3">{{ postFormList[0].defTitle }}</h1>
                 <div class="row g-3">
                     @for (item of postFormList; track item.id) {
                     <div [ngClass]="item.oneRow ? 'col-12' : 'col-md-6'">
