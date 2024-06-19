@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
             next: (res: HttpResponse<Response<Category[]>>) => {
                 if(res !== null && res !== undefined) {
                     this.categories = res.body?.data?.result || [] as Category[];
+                    console.log(res);
                 }
             },
             error: (err: HttpErrorResponse) => {
