@@ -39,6 +39,13 @@ export class SeoService {
         });
     }
 
+    setMetaOgImage(content: string) {
+        this.meta.updateTag({
+            property: 'og:image',
+            content: content
+        });
+    }
+
     setMetaTwitterTitle(content: string) {
         this.meta.updateTag({
             name: 'twitter:title',
@@ -51,5 +58,21 @@ export class SeoService {
             name: 'twitter:description',
             content: content
         });
+    }
+
+    setMetaTwitterImage(content: string) {
+        this.meta.updateTag({
+            name: 'twitter:image',
+            content: content
+        });
+    }
+
+    updateCanonicalLink(content: string) {
+        const canonicalTag = this.meta.getTag('rel="canonical"');
+        if (canonicalTag) {
+            this.meta.updateTag({ rel: 'canonical', href: content });
+        } else {
+            this.meta.addTag({ rel: 'canonical', href: content });
+        }
     }
 }

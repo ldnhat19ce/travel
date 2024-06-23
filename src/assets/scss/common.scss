@@ -293,11 +293,11 @@ $border-color_1: rgba(19, 53, 123, 0.6) rgba(19, 53, 123, 0.6) rgba(19, 53, 123,
 	background-size: cover;
 	background-attachment: fixed;
 	padding: 150px 0 50px 0;
-	.breadcrumb-item {
-		a {
-			color: $color_3 !important;
-		}
-	}
+	// .breadcrumb-item {
+	// 	a {
+	// 		color: $color_3 !important;
+	// 	}
+	// }
 }
 .about {
 	.container {

@@ -16,5 +16,8 @@
     "lbl.login.003": "Login",
     "lbl.login.004": "Password",
     "msg.login.001": "Email must not be null",
-    "msg.login.002": "Password must not be null"
+    "msg.login.002": "Password must not be null",
+    "lbl.not_found.001": "This page is currently under maintenance, please comeback later!",
+    "lbl.not_found.002": "Page not found.",
+    "lbl.not_found.003": "Go home"
 }

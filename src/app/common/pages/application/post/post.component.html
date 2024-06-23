@@ -9,27 +9,41 @@
             }
         </h1>
         <ol class="breadcrumb justify-content-center mb-0">
-            <li class="breadcrumb-item"><a routerLink="/">{{ "lbl.booking.firework.002" | translate }}</a></li>
-            <li class="breadcrumb-item"><a href="#">{{ "lbl.booking.firework.003" | translate }}</a></li>
-            <li class="breadcrumb-item active text-white">{{ "lbl.booking.firework.004" | translate }}</li>
+            <li class="breadcrumb-item"><a routerLink="/" class="text-white">{{ "lbl.booking.firework.002" | translate }}</a></li>
+            @if (post.categoryId === post.parentCategoryId) {
+                <li class="breadcrumb-item"><a class=" text-white" role="button">
+                    @if (currentLang === 'vn') {
+                    {{ post.parentCategoryName }}
+                    } @else {
+                    {{ post.parentCategoryNameEng }}
+                    }
+                </a></li>
+            }
+            <li class="breadcrumb-item active text-white" role="button">
+                @if (currentLang === 'vn') {
+                {{ post.categoryName }}
+                } @else {
+                {{ post.categoryNameEng }}
+                }
+            </li>
         </ol>
     </div>
 </div>
 
 <div class="container-fluid py-5 bg-white">
     @if (currentLang === 'vn') {
-    <div class="container py-5 ql-editor" [innerHTML]="post.content | safeHTML">
+        <div class="container py-5 ql-editor" [innerHTML]="post.content | safeHTML">
 
-    </div>
-    } @else {
-    <div class="container py-5 ql-editor" [innerHTML]="post.contentEng | safeHTML">
+        </div>
+        } @else {
+        <div class="container py-5 ql-editor" [innerHTML]="post.contentEng | safeHTML">
 
-    </div>
-    }
+        </div>
+        }
 </div>
 
 @if(postFormList.length > 0) {
-    <div class="container-fluid booking py-5"
+<div class="container-fluid booking py-5"
     style="background: url('{{ imageUrl }}{{ post.bottomImage }}'); background-repeat: no-repeat;">
     <div class="container py-5">
         <div class="row g-5 align-items-center">
