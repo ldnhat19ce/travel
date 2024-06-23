@@ -11,10 +11,13 @@ import { Observable } from 'rxjs';
 export class CategoryService {
     private _httpClient = inject(HttpClient);
 
-    constructor() {}
-
     getAllCategory(page: number, len: number): Observable<HttpResponse<Response<Category[]>>> {
         let url = `${environment.apiUrl}/category?page=${page}&len=${len}`;
         return this._httpClient.get<Response<Category[]>>(url, { observe: 'response' });
+    }
+
+    getById(id: number): Observable<HttpResponse<Category>> {
+        let url = `${environment.apiUrl}/category/${id}`;
+        return this._httpClient.get<Category>(url, { observe: 'response' });
     }
 }

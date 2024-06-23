@@ -65,7 +65,7 @@
                 @if (item.level === 0) {
                 @if (item.hasChild > 0) {
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ item | transformCategory:
+                    <a routerLink="/post/{{ item.id }}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ item | transformCategory:
                         currentLang }}</a>
                     <div class="dropdown-menu m-0">
                         @for (item2 of categories; track item2.id) {

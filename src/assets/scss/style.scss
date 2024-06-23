@@ -65,3 +65,7 @@ $enable-negative-margins: true;
 .ql-editor img {
     @extend .img-fluid;
 }
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: #fff;
+}
