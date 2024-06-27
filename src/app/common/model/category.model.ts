@@ -9,4 +9,7 @@ export interface Category {
     modifiedAt: string;
     hasChild: number;
     url: string;
+    description: string;
+    descriptionEng: string;
+    imageUrl: string;
 }

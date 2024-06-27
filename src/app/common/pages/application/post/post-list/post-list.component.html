@@ -1,16 +1,22 @@
-<div class="container-fluid bg-breadcrumb">
+<div class="container-fluid bg-breadcrumb"
+    style="background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url('{{ imageUrl }}{{ category.imageUrl }}');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        padding: 150px 0 50px 0;
+        background-attachment: fixed;">
     <div class="container text-center py-5" style="max-width: 900px;">
         @if (currentLang === 'vn') {
-            <h1 class="text-white display-3 mb-4">{{ category.name }}</h1>
+            <span class="text-white display-3 mb-4 h1">{{ category.name }}</span>
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a routerLink="/" class="text-white" role="button">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a href="#" class="text-white">{{ category.name }}</a></li>
+                <li class="breadcrumb-item"><a [routerLink]="'/post/list/' + category.id + '/' + category.url" class="text-white">{{ category.name }}</a></li>
             </ol>
             } @else {
-                <h1 class="text-white display-3 mb-4">{{ category.nameEng }}</h1>
+                <span class="text-white display-3 mb-4 h1">{{ category.nameEng }}</span>
                 <ol class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a routerLink="/" class="text-white" role="button">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#" class="text-white">{{ category.nameEng }}</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="'/post/list/' + category.id + '/' + category.url" class="text-white">{{ category.nameEng }}</a></li>
                 </ol>
             }
     </div>
@@ -19,9 +25,19 @@
 <div class="container-fluid blog py-5">
     <div class="container py-5">
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <h5 class="section-title px-3">Our Blog</h5>
-            <h1 class="mb-4">Popular Travel Blogs</h1>
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti deserunt tenetur sapiente atque. Magni non explicabo beatae sit, vel reiciendis consectetur numquam id similique sunt error obcaecati ducimus officia maiores.
+            <span class="section-title px-3 h5">
+                @if (currentLang === 'vn') {
+                    {{ category.name }}
+                } @else {
+                    {{ category.nameEng }}
+                }
+            </span>
+            <p class="mb-0">
+                @if (currentLang === 'vn') {
+                    {{ category.description }}
+                } @else {
+                    {{ category.descriptionEng }}
+                }
             </p>
         </div>
         <div class="row g-4 justify-content-center">

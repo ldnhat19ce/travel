@@ -8,6 +8,8 @@ import { LanguageUtil } from '../../../../utils/language.util';
 import { LocalStorageService } from '../../../../services/local-storage.service';
 import { Category } from '../../../../model/category.model';
 import { CommonModule } from '@angular/common';
+import { SeoService } from '../../../../services/seo.service';
+import { environment } from '../../../../../../environments/environment';
 
 @Component({
     selector: 'app-post-list',
@@ -25,8 +27,10 @@ export class PostListComponent implements OnInit {
     private _categoryService = inject(CategoryService);
     private _router = inject(Router);
     private _localStorageService = inject(LocalStorageService);
+    private _seoService = inject(SeoService);
 
     currentLang: string = 'vn';
+    imageUrl: string = environment.imgUrl;
 
     category: Category = {} as Category;
 
@@ -40,6 +44,16 @@ export class PostListComponent implements OnInit {
                         if (ValidationUtil.isNotNullAndNotUndefined(res)) {
                             this.category = res.body || ({} as Category);
 
+                            this._seoService.setMetaTitle("Herotraveldn - " + this.category.name);
+                            this._seoService.setMetaDescription(this.category.name);
+                            this._seoService.setMetaOgTitle("Herotraveldn - " + this.category.name);
+                            this._seoService.setMetaOgDescription(this.category.name);
+                            this._seoService.setMetaTwitterTitle("Herotraveldn - " + this.category.name);
+                            this._seoService.setMetaTwitterDescription(this.category.name);
+                            this._seoService.setMetaOgUrl("https://herotraveldn.com/post/list/" + this.category.id + "/" + route["content"]);
+                            // this._seoService.setMetaOgImage(environment.imgUrl + this.category.topImage);
+                            // this._seoService.setMetaTwitterImage(environment.imgUrl + this.post.topImage);
+                            this._seoService.updateCanonicalLink("https://herotraveldn.com/post/list/" + this.category.id + "/" + route["content"]);
                         }
                     },
                     error: (err: HttpErrorResponse) => {
