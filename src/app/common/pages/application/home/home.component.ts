@@ -19,6 +19,6 @@ export class HomeComponent implements OnInit {
         this._seoService.setMetaOgUrl("https://herotraveldn.com/assets/img/logo/favicon.ico");
         this._seoService.setMetaOgImage("https://herotraveldn.com/assets/img/logo/favicon.ico");
         this._seoService.setMetaTwitterImage("https://herotraveldn.com/assets/img/logo/favicon.ico");
-        this._seoService.updateCanonicalLink("https://herotraveldn.com/");
+        this._seoService.updateCanonicalUrl("https://herotraveldn.com/");
     }
 }
