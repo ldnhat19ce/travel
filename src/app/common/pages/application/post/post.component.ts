@@ -71,7 +71,6 @@ export class PostComponent implements OnInit {
                                 this._seoService.setMetaOgUrl("https://herotraveldn.com/post/" + this.post.id + "/" + route["content"]);
                                 this._seoService.setMetaOgImage(environment.imgUrl + this.post.topImage);
                                 this._seoService.setMetaTwitterImage(environment.imgUrl + this.post.topImage);
-                                this._seoService.updateCanonicalLink("https://herotraveldn.com/post/" + this.post.id + "/" + route["content"]);
                                 this.getPostFormList();
                             }
                         },
