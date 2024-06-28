@@ -21,49 +21,49 @@ export class SeoService {
     setMetaOgTitle(content: string) {
         this.meta.updateTag({
             property: 'og:title',
-            content: content
+            content: content,
         });
     }
 
     setMetaOgDescription(content: string) {
         this.meta.updateTag({
             property: 'og:description',
-            content: content
+            content: content,
         });
     }
 
     setMetaOgUrl(content: string) {
         this.meta.updateTag({
             property: 'og:url',
-            content: content
+            content: content,
         });
     }
 
     setMetaOgImage(content: string) {
         this.meta.updateTag({
             property: 'og:image',
-            content: content
+            content: content,
         });
     }
 
     setMetaTwitterTitle(content: string) {
         this.meta.updateTag({
             name: 'twitter:title',
-            content: content
+            content: content,
         });
     }
 
     setMetaTwitterDescription(content: string) {
         this.meta.updateTag({
             name: 'twitter:description',
-            content: content
+            content: content,
         });
     }
 
     setMetaTwitterImage(content: string) {
         this.meta.updateTag({
             name: 'twitter:image',
-            content: content
+            content: content,
         });
     }
 
@@ -74,5 +74,18 @@ export class SeoService {
         } else {
             this.meta.addTag({ rel: 'canonical', href: content });
         }
+    }
+
+    updateCanonicalUrl(url: string) {
+        const head = document.getElementsByTagName('head')[0];
+        let element: HTMLLinkElement = <HTMLLinkElement> document.querySelector(
+            `link[rel='canonical']`
+        );
+        if (element == null) {
+            element = document.createElement('link') as HTMLLinkElement;
+            head.appendChild(element);
+        }
+        element.setAttribute('rel', 'canonical');
+        element.setAttribute('href', url);
     }
 }

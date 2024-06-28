@@ -53,6 +53,7 @@ export class PostListComponent implements OnInit {
                             this._seoService.setMetaOgUrl("https://herotraveldn.com/post/list/" + this.category.id + "/" + route["content"]);
                             // this._seoService.setMetaOgImage(environment.imgUrl + this.category.topImage);
                             // this._seoService.setMetaTwitterImage(environment.imgUrl + this.post.topImage);
+                            this._seoService.updateCanonicalUrl("https://herotraveldn.com/post/list/" + this.category.id + "/" + route["content"]);
                         }
                     },
                     error: (err: HttpErrorResponse) => {
