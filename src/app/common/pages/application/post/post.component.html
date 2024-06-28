@@ -13,10 +13,10 @@
             {{ post.nameEng }}
             }
         </h1>
-        <ol class="breadcrumb justify-content-center mb-0">
+        <ul class="breadcrumb justify-content-center mb-0">
             <li class="breadcrumb-item"><a routerLink="/" class="text-white">{{ "lbl.booking.firework.002" | translate }}</a></li>
             @if (post.categoryId === post.parentCategoryId) {
-                <li class="breadcrumb-item"><a class=" text-white" role="button">
+                <li class="breadcrumb-item"><a class=" text-white">
                     @if (currentLang === 'vn') {
                     {{ post.parentCategoryName }}
                     } @else {
@@ -24,14 +24,14 @@
                     }
                 </a></li>
             }
-            <li class="breadcrumb-item active text-white" role="button">
+            <li class="breadcrumb-item active text-white">
                 @if (currentLang === 'vn') {
                 {{ post.categoryName }}
                 } @else {
                 {{ post.categoryNameEng }}
                 }
             </li>
-        </ol>
+        </ul>
     </div>
 </div>
 

@@ -8,16 +8,16 @@
     <div class="container text-center py-5" style="max-width: 900px;">
         @if (currentLang === 'vn') {
             <span class="text-white display-3 mb-4 h1">{{ category.name }}</span>
-            <ol class="breadcrumb justify-content-center mb-0">
+            <ul class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a routerLink="/" class="text-white" role="button">Trang chủ</a></li>
                 <li class="breadcrumb-item"><a [routerLink]="'/post/list/' + category.id + '/' + category.url" class="text-white">{{ category.name }}</a></li>
-            </ol>
+            </ul>
             } @else {
                 <span class="text-white display-3 mb-4 h1">{{ category.nameEng }}</span>
-                <ol class="breadcrumb justify-content-center mb-0">
+                <ul class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a routerLink="/" class="text-white" role="button">Home</a></li>
                     <li class="breadcrumb-item"><a [routerLink]="'/post/list/' + category.id + '/' + category.url" class="text-white">{{ category.nameEng }}</a></li>
-                </ol>
+                </ul>
             }
     </div>
 </div>
