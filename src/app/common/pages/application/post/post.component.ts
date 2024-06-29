@@ -50,6 +50,8 @@ export class PostComponent implements OnInit {
 
     postId: number = 0;
 
+    loaded: boolean = false;
+
     ngOnInit(): void {
         this.currentLang = LanguageUtil.getLanguage(this._localStorageService);
 
@@ -73,6 +75,7 @@ export class PostComponent implements OnInit {
                                 this._seoService.setMetaTwitterImage(environment.imgUrl + this.post.topImage);
                                 this._seoService.updateCanonicalUrl("https://herotraveldn.com/post/" + this.post.id + "/" + route["content"]);
                                 this.getPostFormList();
+                                this.loaded = true;
                             }
                         },
                         error: (err: HttpErrorResponse) => {

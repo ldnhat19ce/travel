@@ -34,6 +34,8 @@ export class PostListComponent implements OnInit {
 
     category: Category = {} as Category;
 
+    loaded: boolean = false;
+
     ngOnInit(): void {
         this.currentLang = LanguageUtil.getLanguage(this._localStorageService);
 
@@ -51,9 +53,10 @@ export class PostListComponent implements OnInit {
                             this._seoService.setMetaTwitterTitle("Herotraveldn - " + this.category.name);
                             this._seoService.setMetaTwitterDescription(this.category.name);
                             this._seoService.setMetaOgUrl("https://herotraveldn.com/post/list/" + this.category.id + "/" + route["content"]);
-                            // this._seoService.setMetaOgImage(environment.imgUrl + this.category.topImage);
-                            // this._seoService.setMetaTwitterImage(environment.imgUrl + this.post.topImage);
+                            this._seoService.setMetaOgImage(environment.imgUrl + this.category.imageUrl);
+                            this._seoService.setMetaTwitterImage(environment.imgUrl + this.category.imageUrl);
                             this._seoService.updateCanonicalUrl("https://herotraveldn.com/post/list/" + this.category.id + "/" + route["content"]);
+                            this.loaded = true;
                         }
                     },
                     error: (err: HttpErrorResponse) => {

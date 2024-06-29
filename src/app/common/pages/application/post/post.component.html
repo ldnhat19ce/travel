@@ -1,42 +1,51 @@
-<div class="container-fluid bg-breadcrumb"
-    style="background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url('{{ imageUrl }}{{ post.topImage }}');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    padding: 150px 0 50px 0;
-    background-attachment: fixed;">
-    <div class="container text-center py-5" style="max-width: 900px;">
-        <h1 class="text-white display-3 mb-4">
-            @if (currentLang === 'vn') {
-            {{ post.name }}
-            } @else {
-            {{ post.nameEng }}
-            }
-        </h1>
-        <ul class="breadcrumb justify-content-center mb-0">
-            <li class="breadcrumb-item"><a routerLink="/" class="text-white">{{ "lbl.booking.firework.002" | translate }}</a></li>
-            @if (post.categoryId === post.parentCategoryId) {
-                <li class="breadcrumb-item"><a class=" text-white">
-                    @if (currentLang === 'vn') {
-                    {{ post.parentCategoryName }}
-                    } @else {
-                    {{ post.parentCategoryNameEng }}
-                    }
-                </a></li>
-            }
-            <li class="breadcrumb-item active text-white">
-                @if (currentLang === 'vn') {
-                {{ post.categoryName }}
-                } @else {
-                {{ post.categoryNameEng }}
-                }
-            </li>
-        </ul>
+<div class="loader-rouding" style="height: 600px;" [ngClass]="loaded ? 'd-none' : ''">
+    <div class="top-50 start-50 position-fixed container-fluid" [ngClass]="loaded ? 'd-none' : ''">
+        <div class="loader" [ngClass]="loaded ? 'd-none' : ''">
+
+        </div>
     </div>
 </div>
 
-<div class="container-fluid py-5 bg-white">
-    @if (currentLang === 'vn') {
+<div class="loaded-content" [ngClass]="loaded ? '' : 'd-none'">
+    <div class="container-fluid bg-breadcrumb" style="background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url('{{ imageUrl }}{{ post.topImage }}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    padding: 200px 0 50px 0;
+    background-attachment: fixed;">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h1 class="text-white display-3 mb-4">
+                @if (currentLang === 'vn') {
+                {{ post.name }}
+                } @else {
+                {{ post.nameEng }}
+                }
+            </h1>
+            <ul class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a routerLink="/" class="text-white">{{ "lbl.booking.firework.002" |
+                        translate }}</a></li>
+                @if (post.categoryId === post.parentCategoryId) {
+                <li class="breadcrumb-item"><a class=" text-white">
+                        @if (currentLang === 'vn') {
+                        {{ post.parentCategoryName }}
+                        } @else {
+                        {{ post.parentCategoryNameEng }}
+                        }
+                    </a></li>
+                }
+                <li class="breadcrumb-item active text-white">
+                    @if (currentLang === 'vn') {
+                    {{ post.categoryName }}
+                    } @else {
+                    {{ post.categoryNameEng }}
+                    }
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid py-5 bg-white">
+        @if (currentLang === 'vn') {
         <div class="container py-5 ql-editor" [innerHTML]="post.content | safeHTML">
 
         </div>
@@ -45,70 +54,71 @@
 
         </div>
         }
-</div>
+    </div>
 
-@if(postFormList.length > 0) {
-<div class="container-fluid booking py-5"
-    style="
+    @if(postFormList.length > 0) {
+    <div class="container-fluid booking py-5" style="
     background: linear-gradient(rgba(19, 53, 123, .8), rgba(19, 53, 123, .8)), url('{{ imageUrl }}{{ post.bottomImage }}');
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;">
-    <div class="container py-5">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-6">
-                <h5 class="section-booking-title pe-3">{{ postFormList[0].defName1 }}</h5>
-                <h1 class="text-white mb-4">{{ postFormList[0].defName2 }}</h1>
-                <p class="text-white mb-4">
-                    {{ postFormList[0].defContent1 }}
-                </p>
-                <p class="text-white mb-4">
-                    {{ postFormList[0].defContent2 }}
-                </p>
-            </div>
+        <div class="container py-5">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <h5 class="section-booking-title pe-3">{{ postFormList[0].defName1 }}</h5>
+                    <h1 class="text-white mb-4">{{ postFormList[0].defName2 }}</h1>
+                    <p class="text-white mb-4">
+                        {{ postFormList[0].defContent1 }}
+                    </p>
+                    <p class="text-white mb-4">
+                        {{ postFormList[0].defContent2 }}
+                    </p>
+                </div>
 
-            <div class="col-lg-6">
-                <h1 class="text-white mb-3">{{ postFormList[0].defTitle }}</h1>
-                <div class="row g-3">
-                    @for (item of postFormList; track item.id) {
-                    <div [ngClass]="item.oneRow ? 'col-12' : 'col-md-6'">
-                        <div class="form-floating">
-                            @if (item.fieldType === 'INPUT') {
-                            <input type="text" class="form-control bg-white border-0" [id]="item.fieldId"
-                                [placeholder]="item.fieldPlaceholder">
-                            } @else if (item.fieldType === 'DROPDOWN') {
-                            <select class="form-select bg-white border-0" [id]="item.fieldId">
-                                @for (drp of item.fieldHelper1 | convertDropdown; track drp.value) {
-                                <option [value]="drp.value">{{ drp.label }}</option>
+                <div class="col-lg-6">
+                    <h1 class="text-white mb-3">{{ postFormList[0].defTitle }}</h1>
+                    <div class="row g-3">
+                        @for (item of postFormList; track item.id) {
+                        <div [ngClass]="item.oneRow ? 'col-12' : 'col-md-6'">
+                            <div class="form-floating">
+                                @if (item.fieldType === 'INPUT') {
+                                <input type="text" class="form-control bg-white border-0" [id]="item.fieldId"
+                                    [placeholder]="item.fieldPlaceholder">
+                                } @else if (item.fieldType === 'DROPDOWN') {
+                                <select class="form-select bg-white border-0" [id]="item.fieldId">
+                                    @for (drp of item.fieldHelper1 | convertDropdown; track drp.value) {
+                                    <option [value]="drp.value">{{ drp.label }}</option>
+                                    }
+                                </select>
+                                } @else if (item.fieldType === 'TEXT_AREA') {
+                                <textarea class="form-control bg-white border-0" [placeholder]="item.fieldPlaceholder"
+                                    [id]="item.fieldId" style="height: 100px"></textarea>
                                 }
-                            </select>
-                            } @else if (item.fieldType === 'TEXT_AREA') {
-                            <textarea class="form-control bg-white border-0" [placeholder]="item.fieldPlaceholder"
-                                [id]="item.fieldId" style="height: 100px"></textarea>
-                            }
-                            <label for="{{ item.fieldId }}">{{ item.fieldName }}</label>
+                                <label for="{{ item.fieldId }}">{{ item.fieldName }}</label>
+                            </div>
                         </div>
-                    </div>
-                    }
-                    <div class="col-12">
-                        <button class="btn btn-primary text-white w-100 py-3" (click)="onSubmit()">Đặt vé ngay</button>
+                        }
+                        <div class="col-12">
+                            <button class="btn btn-primary text-white w-100 py-3" (click)="onSubmit()">Đặt vé
+                                ngay</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 120">
-    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <strong class="me-auto text-primary">Đăng ký thành công</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body text-dark">
-            Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất!
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 120">
+        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto text-primary">Đăng ký thành công</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body text-dark">
+                Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất!
+            </div>
         </div>
     </div>
+    }
 </div>
-}

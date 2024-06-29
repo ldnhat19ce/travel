@@ -1,13 +1,13 @@
 @charset "utf-8";
 
-$primary: #13357B;
+$primary: #13357b;
 $secondary: #1f05e6;
-$light: #F2F2F2;
-$dark: #14141F;
+$light: #f2f2f2;
+$dark: #14141f;
 
-$font-family-base: 'Roboto', sans-serif;
+$font-family-base: "Roboto", sans-serif;
 
-$headings-font-family: 'Lato', sans-serif;
+$headings-font-family: "Lato", sans-serif;
 
 $body-color: #757575;
 
@@ -29,6 +29,23 @@ $link-decoration: none;
 
 $enable-negative-margins: true;
 
+@import "./bootstrap-5.3.3/scss/functions";
+@import "./bootstrap-5.3.3/scss/variables";
+@import "./bootstrap-5.3.3/scss/maps";
+@import "./bootstrap-5.3.3/scss/mixins";
+@import "./bootstrap-5.3.3/scss/utilities";
+
+$utilities: map-merge(
+    $utilities,
+    (
+        "cursor": (
+            property: cursor,
+            values: auto default pointer wait text move help not-allowed,
+        ),
+    )
+);
+
+@import "./bootstrap-5.3.3/scss/utilities/api";
 @import "./bootstrap-5.3.3/scss/bootstrap";
 
 @import "./common.scss";
@@ -43,13 +60,14 @@ $enable-negative-margins: true;
 
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
+@import "./animation";
 
 .navbar-light {
-	.navbar-nav {
-		.nav-link.active {
-			color: var(--bs-white) !important;
-		}
-	}
+    .navbar-nav {
+        .nav-link.active {
+            color: var(--bs-white) !important;
+        }
+    }
 }
 
 .bottom {
@@ -72,4 +90,10 @@ $enable-negative-margins: true;
 
 .breadcrumb-item + .breadcrumb-item::before {
     color: #fff;
+}
+
+.bg {
+    &-white {
+        background-color: #f2f2f2;
+    }
 }

@@ -1,11 +1,14 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 
 @Injectable({
     providedIn: 'root',
 })
 export class SeoService {
-    constructor(private meta: Meta, private titleService: Title) {}
+    constructor(private meta: Meta,
+                private titleService: Title,
+                @Inject(PLATFORM_ID) private _platformId: Object) {}
 
     setMetaDescription(content: string) {
         this.meta.updateTag({
@@ -77,15 +80,18 @@ export class SeoService {
     }
 
     updateCanonicalUrl(url: string) {
-        const head = document.getElementsByTagName('head')[0];
-        let element: HTMLLinkElement = <HTMLLinkElement> document.querySelector(
-            `link[rel='canonical']`
-        );
-        if (element == null) {
-            element = document.createElement('link') as HTMLLinkElement;
-            head.appendChild(element);
+        if(isPlatformBrowser(this._platformId)) {
+            const head = document.getElementsByTagName('head')[0];
+
+            let element: HTMLLinkElement = <HTMLLinkElement> document.querySelector(
+                `link[rel='canonical']`
+            );
+            if (element == null) {
+                element = document.createElement('link') as HTMLLinkElement;
+                head.appendChild(element);
+            }
+            element.setAttribute('rel', 'canonical');
+            element.setAttribute('href', url);
         }
-        element.setAttribute('rel', 'canonical');
-        element.setAttribute('href', url);
     }
 }
