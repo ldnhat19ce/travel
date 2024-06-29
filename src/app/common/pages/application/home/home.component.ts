@@ -16,9 +16,9 @@ export class HomeComponent implements OnInit {
         this._seoService.setMetaOgDescription("Herotraveldn Chuyên tổ chức các Tour du lịch Miền Trung, Du lịch Đà Nẵng, Tour Du lịch hằng ngày Bà Nà, Hội An, Cù Lao Chàm.");
         this._seoService.setMetaTwitterTitle("Herotraveldn - Dịch vụ du lịch Huế - Đà Nẵng - Hội An");
         this._seoService.setMetaTwitterDescription("Herotraveldn Chuyên tổ chức các Tour du lịch Miền Trung, Du lịch Đà Nẵng, Tour Du lịch hằng ngày Bà Nà, Hội An, Cù Lao Chàm.");
-        this._seoService.setMetaOgUrl("https://herotraveldn.com/assets/img/logo/favicon.ico");
-        this._seoService.setMetaOgImage("https://herotraveldn.com/assets/img/logo/favicon.ico");
-        this._seoService.setMetaTwitterImage("https://herotraveldn.com/assets/img/logo/favicon.ico");
+        this._seoService.setMetaOgUrl("https://herotraveldn.com/assets/img/logo/logo.png");
+        this._seoService.setMetaOgImage("https://herotraveldn.com/assets/img/logo/logo.png");
+        this._seoService.setMetaTwitterImage("https://herotraveldn.com/assets/img/logo/logo.png");
         this._seoService.updateCanonicalUrl("https://herotraveldn.com/");
     }
 }
