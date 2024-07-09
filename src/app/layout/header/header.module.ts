@@ -5,6 +5,7 @@ import { HeaderRoutingModule } from './header-routing.module';
 import { HeaderComponent } from './header.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { TransformCategoryPipe } from '../../common/pipe/transform-category.pipe';
+import { GetCateUrlPipe } from '../../common/pipe/get-cate-url.pipe';
 
 @NgModule({
     declarations: [HeaderComponent],
@@ -12,7 +13,8 @@ import { TransformCategoryPipe } from '../../common/pipe/transform-category.pipe
         CommonModule,
         HeaderRoutingModule,
         TranslateModule,
-        TransformCategoryPipe
+        TransformCategoryPipe,
+        GetCateUrlPipe
     ],
     exports: [HeaderComponent]
 })

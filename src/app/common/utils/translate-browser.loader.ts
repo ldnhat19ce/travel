@@ -18,5 +18,5 @@ export function translateBrowserLoaderFactory(
 }
 
 export function httpTranslateLoaderFactory(http: HttpClient) {
-    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+    return new TranslateHttpLoader(http, './assets/i18n/message_', '.json');
 }

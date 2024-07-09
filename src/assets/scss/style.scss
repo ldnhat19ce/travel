@@ -4,12 +4,17 @@ $primary: #13357b;
 $secondary: #1f05e6;
 $light: #f2f2f2;
 $dark: #14141f;
+$orange: #FFA500;
+$red-orange: #ff4d00;
+$dark-gray: #A9A9A9;
+$white: #fff;
+$paris-green: #333;
 
 $font-family-base: "Roboto", sans-serif;
 
 $headings-font-family: "Lato", sans-serif;
 
-$body-color: #757575;
+$body-color: $dark;
 
 $headings-color: $dark;
 
@@ -61,6 +66,7 @@ $utilities: map-merge(
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
 @import "./animation";
+@import "./snackbar";
 
 .navbar-light {
     .navbar-nav {
@@ -97,3 +103,23 @@ $utilities: map-merge(
         background-color: #f2f2f2;
     }
 }
+
+.text {
+    &-orange {
+        color: $orange;
+    }
+
+    &-red {
+        &-orange {
+            color: $red-orange;
+        }
+    }
+
+    &-dark {
+        &-gray {
+            color: $dark-gray;
+        }
+    }
+}
+
+

@@ -923,7 +923,7 @@ $white: #fff;
 					align-items: center;
 					justify-content: center;
 					transition: 0.5s;
-					a {
+					button {
 						display: flex;
 						align-items: center;
 						justify-content: center;
@@ -938,7 +938,7 @@ $white: #fff;
 			&:hover {
 				.blog-img-inner {
 					.blog-icon {
-						a {
+						button {
 							opacity: 1;
 						}
 						height: 100%;

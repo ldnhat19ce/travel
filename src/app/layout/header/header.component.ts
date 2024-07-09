@@ -1,12 +1,12 @@
-import { Component, Inject, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { LocalStorageService } from '../../common/services/local-storage.service';
 import { CommonConstant } from '../../common/utils/constant/common.constant';
 import { CategoryService } from '../../common/services/category.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Response } from '../../common/model/response.model';
 import { Error } from '../../common/model/error.model';
 import { LanguageUtil } from '../../common/utils/language.util';
 import { Category } from '../../common/model/category.model';
+import { Data } from '../../common/model/data.model';
 
 @Component({
     selector: 'app-header',
@@ -29,9 +29,9 @@ export class HeaderComponent implements OnInit {
         this.currentLang = LanguageUtil.getLanguage(this._localStorageService);
 
         this._categoryService.getAllCategory(1, 10).subscribe({
-            next: (res: HttpResponse<Response<Category[]>>) => {
+            next: (res: HttpResponse<Data<Category[]>>) => {
                 if(res !== null && res !== undefined) {
-                    this.categories = res.body?.data?.result || [] as Category[];
+                    this.categories = res.body?.result || [] as Category[];
                 }
             },
             error: (err: HttpErrorResponse) => {

@@ -1,0 +1,125 @@
+<div class="loader-rouding" style="height: 600px;" [ngClass]="loaded ? 'd-none' : ''">
+    <div class="top-50 start-50 position-fixed container-fluid" [ngClass]="loaded ? 'd-none' : ''">
+        <div class="loader" [ngClass]="loaded ? 'd-none' : ''">
+
+        </div>
+    </div>
+</div>
+
+<div class="loaded-content" [ngClass]="loaded ? '' : 'd-none'">
+    <div class="container-fluid bg-breadcrumb" style="background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url('{{ imageUrl }}{{ category.imageUrl }}');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        padding: 200px 0 50px 0;
+        background-attachment: fixed;">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            @if (currentLang === 'vn') {
+            <span class="text-white display-3 mb-4 h1">{{ category.name }}</span>
+            <ul class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a routerLink="/" class="text-white" role="button">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a [routerLink]="'/post/list/' + category.id + '/' + category.url"
+                        class="text-white">{{ category.name }}</a></li>
+            </ul>
+            } @else {
+            <span class="text-white display-3 mb-4 h1">{{ category.nameEng }}</span>
+            <ul class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a routerLink="/" class="text-white" role="button">Home</a></li>
+                <li class="breadcrumb-item"><a [routerLink]="'/post/list/' + category.id + '/' + category.url"
+                        class="text-white">{{ category.nameEng }}</a></li>
+            </ul>
+            }
+        </div>
+    </div>
+
+    <div class="container-fluid blog py-5">
+        <div class="container py-5">
+            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <span class="section-title px-3 h5">
+                    @if (currentLang === 'vn') {
+                    {{ category.name }}
+                    } @else {
+                    {{ category.nameEng }}
+                    }
+                </span>
+                <p class="mb-0">
+                    @if (currentLang === 'vn') {
+                    {{ category.description }}
+                    } @else {
+                    {{ category.descriptionEng }}
+                    }
+                </p>
+            </div>
+            <div class="row g-4 justify-content-center">
+                @for (item of products; track item.pdtCode) {
+                    <div class="col-lg-4 col-md-6">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <div class="blog-img-inner">
+                                    <img class="img-fluid w-100 rounded-top"
+                                        [src]="imageUrl + item.filePath"
+                                        [alt]="item.pdtName"
+                                        onerror="this.onerror=null;this.src='./assets/img/not-found.jpg'">
+                                    <div class="blog-icon">
+                                        <button class="my-auto border-0 bg-transparent" (click)="copyToClipboard(item)">
+                                            <fa-icon [icon]="faLink" size="2x" [className]="'text-white'"></fa-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
+                                    <small class="flex-fill text-center border-end py-2">
+                                        <fa-icon [icon]="faCalendarAlt" [className]="'text-primary me-2'"></fa-icon>
+                                        28 Jan 2050
+                                    </small>
+                                    <a href="#" class="btn-hover flex-fill text-center text-white border-end py-2">
+                                        <fa-icon [icon]="faThumbsUp" [className]="'text-primary me-2'"></fa-icon>
+                                        1.7K
+                                    </a>
+                                    <a href="#" class="btn-hover flex-fill text-center text-white py-2">
+                                        <fa-icon [icon]="faComments" [className]="'text-primary me-2'"></fa-icon>
+                                        1K
+                                    </a>
+                                </div> -->
+                            </div>
+                            <div class="blog-content border border-top-0 rounded-bottom p-4">
+                                <div class="row">
+                                    <a href="#" class="h5 col-12 justify-content-center d-flex">{{ item.pdtName }}</a>
+                                    <div class="col-7 d-flex flex-column">
+                                        <small class="my-2">
+                                            <fa-icon [icon]="faClock"></fa-icon>
+                                            <span class="fw-bold mx-1">Thời gian:</span>
+                                            {{ item.option1 }}
+                                        </small>
+                                        <small class="my-2">
+                                            <fa-icon [icon]="faLocationDot"></fa-icon>
+                                            <span class="fw-bold mx-1">Lịch trình:</span>
+                                            {{ item.option2 }}
+                                        </small>
+                                        <small class="my-2">
+                                            <fa-icon [icon]="faCar"></fa-icon>
+                                            <span class="fw-bold mx-1">Phương tiện:</span>
+                                            {{ item.option3 }}
+                                        </small>
+                                    </div>
+                                    <div class="col-5 d-flex flex-column">
+                                        <p class="my-2 h5 fw-bold text-red-orange text-end">
+                                            {{ item.retailAmt | number: '1.0-0' }} VND
+                                        </p>
+                                        <p class="my-2 text-end text-decoration-line-through text-dark-gray">
+                                            {{ item.supplyAmt | number: '1.0-0' }} VND
+                                        </p>
+                                        <a href="#" class="btn btn-primary rounded-pill px-2">Chi tiết</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+<app-snackbar></app-snackbar>
+
+
