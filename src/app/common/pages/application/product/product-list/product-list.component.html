@@ -83,7 +83,7 @@
                             </div>
                             <div class="blog-content border border-top-0 rounded-bottom p-4">
                                 <div class="row">
-                                    <a href="#" class="h5 col-12 justify-content-center d-flex">{{ item.pdtName }}</a>
+                                    <span [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)" class="fw-bold h5 col-12 justify-content-center d-flex cursor-pointer">{{ item.pdtName }}</span>
                                     <div class="col-7 d-flex flex-column">
                                         <small class="my-2">
                                             <fa-icon [icon]="faClock"></fa-icon>
@@ -108,7 +108,7 @@
                                         <p class="my-2 text-end text-decoration-line-through text-dark-gray">
                                             {{ item.supplyAmt | number: '1.0-0' }} VND
                                         </p>
-                                        <a href="#" class="btn btn-primary rounded-pill px-2">Chi tiết</a>
+                                        <a [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)" class="btn btn-primary rounded-pill px-2">Chi tiết</a>
                                     </div>
                                 </div>
                             </div>

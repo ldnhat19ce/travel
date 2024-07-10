@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Observable } from 'rxjs';
@@ -19,4 +19,8 @@ export function translateBrowserLoaderFactory(
 
 export function httpTranslateLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/message_', '.json');
+}
+
+export function httpBackendTranslateLoaderFactory(http: HttpBackend) {
+    return new TranslateHttpLoader(new HttpClient(http), './assets/i18n/message_', '.json');
 }

@@ -23,4 +23,8 @@ export interface Product {
     amtId: number;
     supplyAmt: number;
     filePath: string;
+    cateName: string;
+    cateNameEng: string;
+    url: string;
+    imageUrl: string;
 }

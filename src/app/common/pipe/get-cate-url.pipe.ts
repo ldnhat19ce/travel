@@ -14,7 +14,7 @@ export class GetCateUrlPipe implements PipeTransform {
                 if(type === "L") {
                     url = `/product/list/${item.id}/${item.url}`;
                 } else {
-                    url = `/product/${item.id}/${item.url}`;
+                    url = `/product/list/${item.id}/${item.url}`;
                 }
                 break;
             case '01C20': case '01C10':

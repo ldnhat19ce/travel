@@ -1,0 +1,88 @@
+<div class="loader-rouding" style="height: 600px;" [ngClass]="loaded ? 'd-none' : ''">
+    <div class="top-50 start-50 position-fixed container-fluid" [ngClass]="loaded ? 'd-none' : ''">
+        <div class="loader" [ngClass]="loaded ? 'd-none' : ''">
+
+        </div>
+    </div>
+</div>
+
+<div class="loaded-content" [ngClass]="loaded ? '' : 'd-none'">
+    <div class="container-fluid bg-breadcrumb" style="background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url('{{ imageUrl }}{{ product.imageUrl }}');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        padding: 200px 0 50px 0;
+        background-attachment: fixed;">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            @if (currentLang === 'vn') {
+            <span class="text-white display-3 mb-4 h1">{{ product.cateName }}</span>
+            <ul class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a routerLink="/" class="text-white" role="button">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a [routerLink]="'/product/list/' + product.categoryId + '/' + product.url"
+                        class="text-white">{{ product.cateName }}</a></li>
+            </ul>
+            } @else {
+            <span class="text-white display-3 mb-4 h1">{{ product.cateNameEng }}</span>
+            <ul class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a routerLink="/" class="text-white" role="button">Home</a></li>
+                <li class="breadcrumb-item"><a [routerLink]="'/product/list/' + product.categoryId + '/' + product.url"
+                        class="text-white">{{ product.cateNameEng }}</a></li>
+            </ul>
+            }
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row g-3">
+            <h1 class="col-12 text-center my-3 text-primary">{{ product.pdtName }}</h1>
+            <div class="col-12 col-xl-6">
+                <div class="mb-4 mx-auto">
+                    <div id="productCarousel" class="f-carousel">
+                        @for (item of productImage; track item.id) {
+                        <div class="f-carousel__slide" [attr.data-thumb-src]="imageUrl + item.filePath"
+                            data-fancybox="gallery" [attr.data-src]="imageUrl + item.filePath">
+                            <img [alt]="imageUrl + item.filePath" class="w-100"
+                                [attr.data-lazy-src]="imageUrl + item.filePath" />
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-6">
+                <div class="row g-2">
+                    <div class="col-12 d-flex justify-content-between">
+                        <span class="text-primary">#{{ product.cateName }}</span>
+                        <fa-icon [className]="'cursor-pointer'" size="xl" [icon]="faShare"></fa-icon>
+                    </div>
+                    <h2 class="col-12">{{ product.pdtName }}</h2>
+                    <div class="col-12 d-flex">
+                        <span class="my-2 h5 fw-bold text-red-orange text-end">
+                            {{ product.retailAmt | number: '1.0-0' }} VND
+                        </span>
+                        <span class="my-2 mx-2 text-end text-decoration-line-through text-dark-gray">
+                            {{ product.supplyAmt | number: '1.0-0' }} VND
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span><fa-icon [icon]="faBarcode" [className]="'mx-1'"></fa-icon>Mã sản phẩm: </span>
+                        <span class="fw-bold">{{ product.pdtCode }}</span>
+                    </div>
+                    <div class="col-12">
+                        <span><fa-icon [icon]="faClock" [className]="'mx-1'"></fa-icon>Thời gian: </span>
+                        <span class="fw-bold">{{ product.option1 }}</span>
+                    </div>
+                    <div class="col-12">
+                        <span><fa-icon [icon]="faLocationDot" [className]="'mx-1'"></fa-icon>Lịch trình: </span>
+                        <span class="fw-bold">{{ product.option2 }}</span>
+                    </div>
+                    <div class="col-12">
+                        <span><fa-icon [icon]="faCar" [className]="'mx-1'"></fa-icon>Phương tiện: </span>
+                        <span class="fw-bold">{{ product.option3 }}</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

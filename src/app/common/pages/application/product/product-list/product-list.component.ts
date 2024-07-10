@@ -16,6 +16,7 @@ import { faCalendarAlt, faCar, faClock, faComments, faLink, faLocationDot, faThu
 import {Clipboard, ClipboardModule} from '@angular/cdk/clipboard';
 import { SnackbarService } from '../../../../services/component/snackbar.service';
 import { SnackbarComponent } from '../../../general/snackbar/snackbar.component';
+import { NormalizeViPipe } from '../../../../pipe/normalize-vi.pipe';
 
 @Component({
     selector: 'app-product-list',
@@ -25,7 +26,8 @@ import { SnackbarComponent } from '../../../general/snackbar/snackbar.component'
         RouterModule,
         FontAwesomeModule,
         ClipboardModule,
-        SnackbarComponent
+        SnackbarComponent,
+        NormalizeViPipe
     ],
     templateUrl: './product-list.component.html',
     styleUrl: './product-list.component.scss',

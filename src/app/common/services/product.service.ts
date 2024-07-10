@@ -15,4 +15,9 @@ export class ProductService {
         let url = `${environment.apiUrl}/product`;
         return this._httpClient.get<Data<Product[]>>(url, { params: params, observe: 'response' });
     }
+
+    getDetailProduct(productCode: string): Observable<HttpResponse<Product>> {
+        let url = `${environment.apiUrl}/product/${productCode}`;
+        return this._httpClient.get<Product>(url, { observe: 'response' });
+    }
 }

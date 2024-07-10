@@ -23,6 +23,7 @@
         "@angular/router": "^17.2.0",
         "@angular/service-worker": "^17.3.8",
         "@angular/ssr": "^17.2.3",
+        "@fancyapps/ui": "^5.0.36",
         "@fortawesome/angular-fontawesome": "^0.14.1",
         "@fortawesome/fontawesome-free": "^5.15.4",
         "@fortawesome/free-solid-svg-icons": "^6.5.2",
