@@ -15,6 +15,11 @@ export class SeoService {
             property: 'description',
             content: content,
         });
+
+        this.meta.updateTag({
+            name: 'description',
+            content: content,
+        });
     }
 
     setMetaTitle(title: string) {

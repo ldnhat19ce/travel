@@ -18,14 +18,14 @@
             <span class="text-white display-3 mb-4 h1">{{ category.name }}</span>
             <ul class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a routerLink="/" class="text-white" role="button">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a [routerLink]="'/post/list/' + category.id + '/' + category.url"
+                <li class="breadcrumb-item"><a [routerLink]="'/product/list/' + category.id + '/' + category.url"
                         class="text-white">{{ category.name }}</a></li>
             </ul>
             } @else {
             <span class="text-white display-3 mb-4 h1">{{ category.nameEng }}</span>
             <ul class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a routerLink="/" class="text-white" role="button">Home</a></li>
-                <li class="breadcrumb-item"><a [routerLink]="'/post/list/' + category.id + '/' + category.url"
+                <li class="breadcrumb-item"><a [routerLink]="'/product/list/' + category.id + '/' + category.url"
                         class="text-white">{{ category.nameEng }}</a></li>
             </ul>
             }
@@ -51,7 +51,7 @@
                 </p>
             </div>
             <div class="row g-4 justify-content-center">
-                @for (item of products; track item.pdtCode) {
+                @for (item of products | paginate: paginationConfig; track item.pdtCode) {
                     <div class="col-lg-4 col-md-6">
                         <div class="blog-item">
                             <div class="blog-img">
@@ -113,6 +113,16 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                }
+
+                @if (totalItems > len) {
+                    <div class="col-12">
+                        <app-pagination
+                            [config]="paginationConfig"
+                            (pageChange)="onChangePage($event)"
+
+                        ></app-pagination>
                     </div>
                 }
             </div>

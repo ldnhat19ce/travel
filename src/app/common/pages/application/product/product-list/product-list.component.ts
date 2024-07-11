@@ -17,6 +17,8 @@ import {Clipboard, ClipboardModule} from '@angular/cdk/clipboard';
 import { SnackbarService } from '../../../../services/component/snackbar.service';
 import { SnackbarComponent } from '../../../general/snackbar/snackbar.component';
 import { NormalizeViPipe } from '../../../../pipe/normalize-vi.pipe';
+import { PaginationComponent } from '../../../general/pagination/pagination.component';
+import { NgxPaginationModule, PaginationInstance } from 'ngx-pagination';
 
 @Component({
     selector: 'app-product-list',
@@ -27,7 +29,9 @@ import { NormalizeViPipe } from '../../../../pipe/normalize-vi.pipe';
         FontAwesomeModule,
         ClipboardModule,
         SnackbarComponent,
-        NormalizeViPipe
+        NormalizeViPipe,
+        PaginationComponent,
+        NgxPaginationModule
     ],
     templateUrl: './product-list.component.html',
     styleUrl: './product-list.component.scss',
@@ -64,6 +68,14 @@ export class ProductListComponent implements OnInit {
 
     page: number = 1;
     len: number = 10;
+    totalItems: number = 0;
+
+    paginationConfig: PaginationInstance = {
+        id: "product-list",
+        itemsPerPage: this.len,
+        currentPage: this.page,
+        totalItems: this.totalItems
+    }
 
     ngOnInit(): void {
         this.currentLang = LanguageUtil.getLanguage(this._localStorageService);
@@ -102,18 +114,26 @@ export class ProductListComponent implements OnInit {
         this._snackbarService.show("Copy thành công!", 3000);
     }
 
+    onChangePage(page: number) {
+        this.page = page;
+        this.paginationConfig.currentPage = page;
+        this.getListProduct();
+    }
+
     private getListProduct() {
         this._productService.getPageProduct(this.getParamProduct()).subscribe(res => {
             if(res !== null && res !== undefined) {
                 this.products = res.body?.result || [];
+                this.totalItems = res.body?.total || 0;
+                this.paginationConfig.totalItems = this.totalItems;
             }
         });
     }
 
     private getParamProduct() {
         return {
-            page: 1,
-            limit: 10,
+            page: this.page,
+            limit: this.len,
             categoryId: this.category.id
         }
     }

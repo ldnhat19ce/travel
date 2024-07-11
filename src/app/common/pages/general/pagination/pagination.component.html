@@ -1,0 +1,28 @@
+<div class="row">
+    <pagination-template class="col-12 d-flex justify-content-center app-pagination" #p="paginationApi" id="{{ config.id }}" (pageChange)="pageChange.emit($event)"
+        (pageBoundsCorrection)="pageBoundsCorrection.emit($event)">
+
+        <ul>
+            <li class="px-1" [class.disabled]="p.isFirstPage()" (click)="p.setCurrent(1)">
+                <a aria-label="Previous" role="button" [class.bg-dark-gray]="p.isFirstPage()" class="d-flex justify-content-center align-items-center">
+                    &laquo;
+                </a>
+            </li>
+            @for (page of p.pages; track page.value) {
+            <li class="px-1" [class.active]="p.getCurrent() === page.value">
+                @if (p.getCurrent() !== page.value) {
+                <a role="button" (click)="p.setCurrent(page.value)">{{ page.label }}</a>
+                } @else {
+                <a role="button">{{ page.label }}</a>
+                }
+            </li>
+            }
+            <li class="px-1" [class.disabled]="p.isLastPage()" (click)="p.setCurrent(p.getLastPage())">
+                <a aria-label="Next" role="button" [class.bg-dark-gray]="p.isLastPage()" class="d-flex justify-content-center align-items-center">
+                    &raquo;
+                </a>
+            </li>
+        </ul>
+    </pagination-template>
+
+</div>

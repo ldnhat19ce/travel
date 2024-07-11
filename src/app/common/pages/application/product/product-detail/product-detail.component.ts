@@ -96,8 +96,6 @@ export class ProductDetailComponent implements OnInit {
                                         '/' +
                                         route['content']
                                 );
-                                // this._seoService.setMetaOgImage(environment.imgUrl + this.category.imageUrl);
-                                // this._seoService.setMetaTwitterImage(environment.imgUrl + this.category.imageUrl);
                                 this._seoService.updateCanonicalUrl(
                                     'https://herotraveldn.com/product/' +
                                         this.product.pdtCode +
@@ -105,7 +103,6 @@ export class ProductDetailComponent implements OnInit {
                                         route['content']
                                 );
                                 this.getListProductImage(this.product.pdtCode);
-                                // this.loaded = true;
                             }
                         },
                         error: (err: HttpErrorResponse) => {
@@ -122,6 +119,18 @@ export class ProductDetailComponent implements OnInit {
             .subscribe((res) => {
                 if (ValidationUtil.isNotNullAndNotUndefined(res)) {
                     this.productImage = res.body || [];
+
+                    if(this.productImage.length > 0) {
+                        let imageLarge = this.productImage.filter(v => v.imageKind === 'LARGE')[0];
+                        if(imageLarge !== null && imageLarge !== undefined) {
+                            this._seoService.setMetaOgImage(environment.imgUrl + imageLarge.filePath);
+                            this._seoService.setMetaTwitterImage(environment.imgUrl + imageLarge.filePath);
+                        } else {
+                            this._seoService.setMetaOgImage("https://herotraveldn.com/assets/img/logo/logo.png");
+                            this._seoService.setMetaTwitterImage("https://herotraveldn.com/assets/img/logo/logo.png");
+                        }
+                    }
+
                     if (this.isBrowser) {
                         let myCarousel = document.getElementById('productCarousel');
 
