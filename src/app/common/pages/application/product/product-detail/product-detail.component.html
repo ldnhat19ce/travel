@@ -34,7 +34,7 @@
 
     <div class="container mt-3">
         <div class="row g-3">
-            <h1 class="col-12 text-center my-3 text-primary">{{ product.pdtName }}</h1>
+            <h1 class="col-12 text-center my-3 text-primary fw-bold">{{ product.pdtName }}</h1>
             <div class="col-12 col-xl-6">
                 <div class="mb-4 mx-auto">
                     <div id="productCarousel" class="f-carousel">
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="col-12 col-xl-6">
-                <div class="row g-2">
+                <div class="row g-3 mx-5">
                     <div class="col-12 d-flex justify-content-between">
                         <span class="text-primary">#{{ product.cateName }}</span>
                         <fa-icon [className]="'cursor-pointer'" size="xl" [icon]="faShare"></fa-icon>
@@ -117,36 +117,47 @@
                     <div class="tab-pane fade show active" id="pills-intro" role="tabpanel"
                         aria-labelledby="pills-intro-tab">
                         @if (currentLang === "vn") {
-                            <div class="ql-editor" [innerHTML]="product.intro | safeHTML">
+                            @if (product.intro !== null && product.intro !== undefined) {
+                                <div class="ql-editor" [innerHTML]="product.intro | safeHTML">
 
-                            </div>
+                                </div>
+                            }
                         } @else {
-                            <div class="ql-editor" [innerHTML]="product.introEng | safeHTML">
+                            @if (product.introEng !== null && product.introEng !== undefined) {
+                                <div class="ql-editor" [innerHTML]="product.introEng | safeHTML">
 
-                            </div>
+                                </div>
+                            }
                         }
-
                     </div>
                     <div class="tab-pane fade" id="pills-scheduler" role="tabpanel" aria-labelledby="pills-scheduler-tab">
                         @if (currentLang === "vn") {
-                            <div class="ql-editor" [innerHTML]="product.schedule | safeHTML">
+                            @if (product.schedule !== null && product.schedule !== undefined) {
+                                <div class="ql-editor" [innerHTML]="product.schedule | safeHTML">
 
-                            </div>
+                                </div>
+                            }
                         } @else {
-                            <div class="ql-editor" [innerHTML]="product.scheduleEng | safeHTML">
+                            @if (product.scheduleEng !== null && product.scheduleEng !== undefined) {
+                                <div class="ql-editor" [innerHTML]="product.scheduleEng | safeHTML">
 
-                            </div>
+                                </div>
+                            }
                         }
                     </div>
                     <div class="tab-pane fade" id="pills-policy" role="tabpanel" aria-labelledby="pills-policy-tab">
                         @if (currentLang === "vn") {
-                            <div class="ql-editor" [innerHTML]="product.policy | safeHTML">
+                            @if (product.policy !== null && product.policy !== undefined) {
+                                <div class="ql-editor" [innerHTML]="product.policy | safeHTML">
 
-                            </div>
+                                </div>
+                            }
                         } @else {
-                            <div class="ql-editor" [innerHTML]="product.policyEng | safeHTML">
+                            @if (product.policyEng !== null && product.policyEng !== undefined) {
+                                <div class="ql-editor" [innerHTML]="product.policyEng | safeHTML">
 
-                            </div>
+                                </div>
+                            }
                         }
                     </div>
                     <div class="tab-pane fade" id="pills-comment" role="tabpanel" aria-labelledby="pills-comment-tab">
@@ -158,6 +169,7 @@
                 <span class="h3 fw-bold">{{ 'lbl.product.detail.004' | translate }}</span>
             </div>
         </div>
+
 
     </div>
 </div>
