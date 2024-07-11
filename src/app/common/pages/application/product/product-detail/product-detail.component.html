@@ -38,6 +38,7 @@
             <div class="col-12 col-xl-6">
                 <div class="mb-4 mx-auto">
                     <div id="productCarousel" class="f-carousel">
+                        @if (productImage.length > 0) {
                         @for (item of productImage; track item.id) {
                         <div class="f-carousel__slide" [attr.data-thumb-src]="imageUrl + item.filePath"
                             data-fancybox="gallery" [attr.data-src]="imageUrl + item.filePath">
@@ -45,6 +46,13 @@
                                 [attr.data-lazy-src]="imageUrl + item.filePath" />
                         </div>
                         }
+                        } @else {
+                        <div class="f-carousel__slide" data-thumb-src="./assets/img/not-found.jpg"
+                            data-fancybox="gallery" data-src="./assets/img/not-found.jpg">
+                            <img alt="Image" class="w-100" data-lazy-src="./assets/img/not-found.jpg" />
+                        </div>
+                        }
+
                     </div>
                 </div>
             </div>
@@ -81,6 +89,47 @@
                     </div>
 
                 </div>
+            </div>
+            <div class="col-12">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active border mx-auto" id="pills-intro-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-intro" type="button" role="tab" aria-controls="pills-intro"
+                            aria-selected="true">{{ 'lbl.product.detail.001' | translate }}</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link border ms-2" id="pills-scheduler-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-scheduler" type="button" role="tab" aria-controls="pills-scheduler"
+                            aria-selected="false">{{ 'lbl.product.detail.002' | translate }}</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link border ms-2" id="pills-comment-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-comment" type="button" role="tab" aria-controls="pills-comment"
+                            aria-selected="false">{{ 'lbl.product.detail.003' | translate }}</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-intro" role="tabpanel"
+                        aria-labelledby="pills-intro-tab">
+                        @if (currentLang === "vn") {
+                            <div class="ql-editor" [innerHTML]="product.intro | safeHTML">
+
+                            </div>
+                        } @else {
+                            <div class="ql-editor" [innerHTML]="product.introEng | safeHTML">
+
+                            </div>
+                        }
+
+                    </div>
+                    <div class="tab-pane fade" id="pills-scheduler" role="tabpanel" aria-labelledby="pills-scheduler-tab">
+                        ...</div>
+                    <div class="tab-pane fade" id="pills-comment" role="tabpanel" aria-labelledby="pills-comment-tab">
+                        ...</div>
+                </div>
+            </div>
+            <div class="col-12">
+                <span class="h3 fw-bold">{{ 'lbl.product.detail.004' | translate }}</span>
             </div>
         </div>
 

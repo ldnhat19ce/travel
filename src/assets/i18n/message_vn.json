@@ -19,5 +19,9 @@
     "msg.login.002": "Mật khẩu không được để trống",
     "lbl.not_found.001": "Nội dung này hiện đang được bảo trì, vui lòng quay lại sau!",
     "lbl.not_found.002": "Trang không tồn tại.",
-    "lbl.not_found.003": "Trở về trang chủ"
+    "lbl.not_found.003": "Trở về trang chủ",
+    "lbl.product.detail.001": "Giới thiệu",
+    "lbl.product.detail.002": "Lịch trình",
+    "lbl.product.detail.003": "Bình luận",
+    "lbl.product.detail.004": "Sản phẩm liên quan"
 }

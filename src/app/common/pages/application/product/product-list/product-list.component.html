@@ -53,10 +53,10 @@
             <div class="row g-4 justify-content-center">
                 @for (item of products | paginate: paginationConfig; track item.pdtCode) {
                     <div class="col-lg-4 col-md-6">
-                        <div class="blog-item">
+                        <div class="blog-item h-100 d-flex flex-column justify-content-between border rounded-1">
                             <div class="blog-img">
                                 <div class="blog-img-inner">
-                                    <img class="img-fluid w-100 rounded-top"
+                                    <img class="img-fluid w-100"
                                         [src]="imageUrl + item.filePath"
                                         [alt]="item.pdtName"
                                         onerror="this.onerror=null;this.src='./assets/img/not-found.jpg'">
@@ -81,7 +81,7 @@
                                     </a>
                                 </div> -->
                             </div>
-                            <div class="blog-content border border-top-0 rounded-bottom p-4">
+                            <div class="blog-content rounded-bottom p-4">
                                 <div class="row">
                                     <span [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)" class="fw-bold h5 col-12 justify-content-center d-flex cursor-pointer">{{ item.pdtName }}</span>
                                     <div class="col-7 d-flex flex-column">

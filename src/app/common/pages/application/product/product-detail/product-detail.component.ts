@@ -21,6 +21,8 @@ import { LanguageUtil } from '../../../../utils/language.util';
 import { LocalStorageService } from '../../../../services/local-storage.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBarcode, faCar, faClock, faLocationDot, faShare } from '@fortawesome/free-solid-svg-icons';
+import { SafeHTMLPipe } from '../../../../pipe/safe-html.pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-product-detail',
@@ -28,7 +30,9 @@ import { faBarcode, faCar, faClock, faLocationDot, faShare } from '@fortawesome/
     imports: [
         CommonModule,
         RouterLink,
-        FontAwesomeModule
+        FontAwesomeModule,
+        SafeHTMLPipe,
+        TranslateModule
     ],
     host: { class: 'container-fluid' },
     templateUrl: './product-detail.component.html',

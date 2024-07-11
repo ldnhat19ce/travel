@@ -27,4 +27,6 @@ export interface Product {
     cateNameEng: string;
     url: string;
     imageUrl: string;
+    intro: string;
+    introEng: string;
 }
