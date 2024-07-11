@@ -29,4 +29,8 @@ export interface Product {
     imageUrl: string;
     intro: string;
     introEng: string;
+    schedule: string;
+    scheduleEng: string;
+    policy: string;
+    policyEng: string;
 }

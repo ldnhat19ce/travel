@@ -103,6 +103,11 @@
                             aria-selected="false">{{ 'lbl.product.detail.002' | translate }}</button>
                     </li>
                     <li class="nav-item" role="presentation">
+                        <button class="nav-link border ms-2" id="pills-policy-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-policy" type="button" role="tab" aria-controls="pills-policy"
+                            aria-selected="false">{{ 'lbl.product.detail.005' | translate }}</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
                         <button class="nav-link border ms-2" id="pills-comment-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-comment" type="button" role="tab" aria-controls="pills-comment"
                             aria-selected="false">{{ 'lbl.product.detail.003' | translate }}</button>
@@ -123,9 +128,30 @@
 
                     </div>
                     <div class="tab-pane fade" id="pills-scheduler" role="tabpanel" aria-labelledby="pills-scheduler-tab">
-                        ...</div>
+                        @if (currentLang === "vn") {
+                            <div class="ql-editor" [innerHTML]="product.schedule | safeHTML">
+
+                            </div>
+                        } @else {
+                            <div class="ql-editor" [innerHTML]="product.scheduleEng | safeHTML">
+
+                            </div>
+                        }
+                    </div>
+                    <div class="tab-pane fade" id="pills-policy" role="tabpanel" aria-labelledby="pills-policy-tab">
+                        @if (currentLang === "vn") {
+                            <div class="ql-editor" [innerHTML]="product.policy | safeHTML">
+
+                            </div>
+                        } @else {
+                            <div class="ql-editor" [innerHTML]="product.policyEng | safeHTML">
+
+                            </div>
+                        }
+                    </div>
                     <div class="tab-pane fade" id="pills-comment" role="tabpanel" aria-labelledby="pills-comment-tab">
-                        ...</div>
+
+                    </div>
                 </div>
             </div>
             <div class="col-12">
