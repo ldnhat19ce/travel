@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="col-12 col-xl-6">
-                <div class="row g-3 mx-5">
+                <div class="row g-3 mx-xl-5">
                     <div class="col-12 d-flex justify-content-between">
                         <span class="text-primary">#{{ product.cateName }}</span>
                         <fa-icon [className]="'cursor-pointer'" size="xl" [icon]="faShare"></fa-icon>
@@ -91,24 +91,24 @@
                 </div>
             </div>
             <div class="col-12">
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <ul class="nav nav-pills mb-3 d-flex gap-2" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active border mx-auto" id="pills-intro-tab" data-bs-toggle="pill"
+                        <button class="nav-link active border" id="pills-intro-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-intro" type="button" role="tab" aria-controls="pills-intro"
                             aria-selected="true">{{ 'lbl.product.detail.001' | translate }}</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link border ms-2" id="pills-scheduler-tab" data-bs-toggle="pill"
+                        <button class="nav-link border" id="pills-scheduler-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-scheduler" type="button" role="tab" aria-controls="pills-scheduler"
                             aria-selected="false">{{ 'lbl.product.detail.002' | translate }}</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link border ms-2" id="pills-policy-tab" data-bs-toggle="pill"
+                        <button class="nav-link border" id="pills-policy-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-policy" type="button" role="tab" aria-controls="pills-policy"
                             aria-selected="false">{{ 'lbl.product.detail.005' | translate }}</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link border ms-2" id="pills-comment-tab" data-bs-toggle="pill"
+                        <button class="nav-link border" id="pills-comment-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-comment" type="button" role="tab" aria-controls="pills-comment"
                             aria-selected="false">{{ 'lbl.product.detail.003' | translate }}</button>
                     </li>
@@ -165,8 +165,55 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
-                <span class="h3 fw-bold">{{ 'lbl.product.detail.004' | translate }}</span>
+            <div class="col-12 d-flex flex-column">
+                <span class="h3 fw-bold mb-3">{{ 'lbl.product.detail.004' | translate }}</span>
+                <div class="row g-4">
+                    @for (item of productRelated; track item.pdtCode) {
+                        <div class="col-lg-4 col-md-6">
+                            <div class="blog-item h-100 d-flex flex-column justify-content-between border rounded-1">
+                                <div class="blog-img">
+                                    <div class="blog-img-inner">
+                                        <img class="img-fluid w-100"
+                                            [src]="imageUrl + item.filePath"
+                                            [alt]="item.pdtName"
+                                            onerror="this.onerror=null;this.src='./assets/img/not-found.jpg'">
+                                    </div>
+                                </div>
+                                <div class="blog-content rounded-bottom p-4">
+                                    <div class="row">
+                                        <span [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)" class="fw-bold h5 col-12 justify-content-center d-flex cursor-pointer">{{ item.pdtName }}</span>
+                                        <div class="col-7 d-flex flex-column">
+                                            <small class="my-2">
+                                                <fa-icon [icon]="faClock"></fa-icon>
+                                                <span class="fw-bold mx-1">Thời gian:</span>
+                                                {{ item.option1 }}
+                                            </small>
+                                            <small class="my-2">
+                                                <fa-icon [icon]="faLocationDot"></fa-icon>
+                                                <span class="fw-bold mx-1">Lịch trình:</span>
+                                                {{ item.option2 }}
+                                            </small>
+                                            <small class="my-2">
+                                                <fa-icon [icon]="faCar"></fa-icon>
+                                                <span class="fw-bold mx-1">Phương tiện:</span>
+                                                {{ item.option3 }}
+                                            </small>
+                                        </div>
+                                        <div class="col-5 d-flex flex-column">
+                                            <p class="my-2 h5 fw-bold text-red-orange text-end">
+                                                {{ item.retailAmt | number: '1.0-0' }} VND
+                                            </p>
+                                            <p class="my-2 text-end text-decoration-line-through text-dark-gray">
+                                                {{ item.supplyAmt | number: '1.0-0' }} VND
+                                            </p>
+                                            <a [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)" class="btn btn-primary rounded-pill px-2">Chi tiết</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
 

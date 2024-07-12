@@ -67,7 +67,7 @@ export class ProductListComponent implements OnInit {
     description: string = '';
 
     page: number = 1;
-    len: number = 10;
+    len: number = 9;
     totalItems: number = 0;
 
     paginationConfig: PaginationInstance = {

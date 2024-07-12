@@ -23,6 +23,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBarcode, faCar, faClock, faLocationDot, faShare } from '@fortawesome/free-solid-svg-icons';
 import { SafeHTMLPipe } from '../../../../pipe/safe-html.pipe';
 import { TranslateModule } from '@ngx-translate/core';
+import { ProductRelationService } from '../../../../services/product-relation.service';
+import { NormalizeViPipe } from '../../../../pipe/normalize-vi.pipe';
 
 @Component({
     selector: 'app-product-detail',
@@ -32,7 +34,8 @@ import { TranslateModule } from '@ngx-translate/core';
         RouterLink,
         FontAwesomeModule,
         SafeHTMLPipe,
-        TranslateModule
+        TranslateModule,
+        NormalizeViPipe
     ],
     host: { class: 'container-fluid' },
     templateUrl: './product-detail.component.html',
@@ -46,8 +49,11 @@ export class ProductDetailComponent implements OnInit {
     private _seoService = inject(SeoService);
     private _platformId = inject(PLATFORM_ID);
     private _localStorageService = inject(LocalStorageService);
+    private _productRelationService = inject(ProductRelationService);
 
     productImage: ProductImage[] = [] as ProductImage[];
+
+    productRelated: Product[] = [] as Product[];
 
     product: Product = {} as Product;
 
@@ -107,6 +113,7 @@ export class ProductDetailComponent implements OnInit {
                                         route['content']
                                 );
                                 this.getListProductImage(this.product.pdtCode);
+                                this.getProductRelation();
                             }
                         },
                         error: (err: HttpErrorResponse) => {
@@ -214,5 +221,21 @@ export class ProductDetailComponent implements OnInit {
                     }
                 }
             });
+    }
+
+    private getProductRelation() {
+        this._productRelationService.getPageProductRelation(this.getParamProductRelation()).subscribe(res => {
+            if(ValidationUtil.isNotNullAndNotUndefined(res)) {
+                this.productRelated = res.body?.result || [];
+            }
+        });
+    }
+
+    private getParamProductRelation() {
+        return {
+            page: 1,
+            len: 10,
+            productCode: this.product.pdtCode
+        }
     }
 }
