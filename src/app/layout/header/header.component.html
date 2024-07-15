@@ -4,7 +4,7 @@
         <a routerLink="/" class="navbar-brand p-0 d-flex">
             <img src="./assets/img/logo/logo.png" alt="">
 
-            <span class="m-0 h1">HeroTravelDN</span>
+            <h1 class="m-0 h1">HeroTravelDN</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"  aria-labelledby="Collapse" aria-label="Collapse">
             <span class="fa fa-bars"></span>
@@ -36,7 +36,7 @@
                 }
                 <div class="nav-item d-flex justify-content-center align-items-center">
                     <div class="dropdown pe-2">
-                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-globe me-2"></i>{{ 'lbl.header.002' | translate }}</a>
+                        <span class="dropdown-toggle cursor-pointer text-primary" data-bs-toggle="dropdown"><i class="fas fa-globe me-2"></i>{{ 'lbl.header.002' | translate }}</span>
                         <div class="dropdown-menu rounded">
                             <a role="button" (click)="onChangeLanguage('vn')" class="dropdown-item">
                                 <svg width="24" height="24" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg">

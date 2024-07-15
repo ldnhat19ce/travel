@@ -2,11 +2,11 @@
     <div class="swiper" id="homeBanner">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <img src="./assets/img/banner_1.jpg" class="img-fluid" alt="Image" loading="lazy">
+                <img src="./assets/img/banner_1.jpg" class="img-fluid" alt="Image">
                 <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
             </div>
             <div class="swiper-slide">
-                <img src="./assets/img/banner_2.jpg" class="img-fluid" alt="Image" loading="lazy">
+                <img src="./assets/img/banner_2.jpg" class="img-fluid" alt="Image">
                 <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
             </div>
         </div>
@@ -64,9 +64,44 @@
 </div>
 <!-- About End -->
 
+<div class="container-fluid destination py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h1 class="section-title mb-0">Vé tham quan</h1>
+        </div>
+        <div class="product-swiper">
+            <div class="swiper" id="productSwiper">
+                <div class="swiper-wrapper">
+                    @if (products.length > 0) {
+                        @for (item of products; track item.pdtCode) {
+                            <div class="swiper-slide"
+                            [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)"
+                            style="background: linear-gradient(to top, #0f2027, #203a4300, #2c536400),
+                            url('{{ imageUrl + item.filePath }}')
+                                no-repeat 50% 50% / cover">
+                                <span class="sp-code">#{{ item.pdtCode }}</span>
+                                <div>
+                                    <span class="h2">{{ item.pdtName }}</span>
+                                    <p class="d-flex gap-2">
+                                        <fa-icon [icon]="faMoneyCheckDollar"></fa-icon>
+                                        <span class="fw-bold text-orange">{{ item.retailAmt | number: '1.0-0' }} VNĐ</span>
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 
 <!-- Services Start -->
-<div class="container-fluid bg-light service py-5">
+<!-- <div class="container-fluid bg-light service py-5">
     <div class="container py-5">
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
             <h5 class="section-title px-3">Dịch vụ</h5>
@@ -179,7 +214,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- Services End -->
 
 
@@ -330,3 +365,13 @@
     </div>
 </div>
 <!-- Destination End -->
+
+<div class="container-fluid destination py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <!-- <h5 class="section-title px-3">Cộng đồng</h5> -->
+            <h1 class="section-title mb-0">Cộng đồng</h1>
+        </div>
+
+    </div>
+</div>

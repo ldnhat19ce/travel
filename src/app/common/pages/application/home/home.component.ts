@@ -2,7 +2,12 @@ import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { SeoService } from '../../../services/seo.service';
 import { isPlatformBrowser } from '@angular/common';
 import Swiper from 'swiper';
-import { Autoplay, Pagination } from 'swiper/modules';
+import { Autoplay, Keyboard, Pagination } from 'swiper/modules';
+import { Product } from '../../../model/product.model';
+import { ProductService } from '../../../services/product.service';
+import { ValidationUtil } from '../../../utils/validation.util';
+import { environment } from '../../../../../environments/environment';
+import { faMoneyCheckDollar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-home',
@@ -12,10 +17,18 @@ import { Autoplay, Pagination } from 'swiper/modules';
 export class HomeComponent implements OnInit {
     private _seoService = inject(SeoService);
     private _platformId = inject(PLATFORM_ID);
+    private _productService = inject(ProductService);
 
     isBrowser: boolean = false;
 
+    products: Product[] = [] as Product[];
+
+    imageUrl: string = environment.imgUrl;
+
+    faMoneyCheckDollar = faMoneyCheckDollar;
+
     ngOnInit(): void {
+        this.getTicketProduct();
         this.isBrowser = isPlatformBrowser(this._platformId);
 
         this._seoService.setMetaTitle(
@@ -51,19 +64,60 @@ export class HomeComponent implements OnInit {
                 const swiper = new Swiper(container, {
                     loop: true,
                     pagination: {
-                        el: ".swiper-pagination",
+                        el: '.swiper-pagination',
                         clickable: true,
                         renderBullet: function (index, className) {
-                        return '<span class="' + className + '">' + (index + 1) + "</span>";
+                            return (
+                                '<span class="' +
+                                className +
+                                '">' +
+                                (index + 1) +
+                                '</span>'
+                            );
                         },
                     },
                     autoplay: {
                         delay: 2500,
-                        disableOnInteraction: false
+                        disableOnInteraction: false,
                     },
-                    modules: [Pagination, Autoplay]
+                    modules: [Pagination, Autoplay],
                 });
             }
+
+            setTimeout(() => {
+                const productSwiper = document.getElementById('productSwiper');
+                if (productSwiper !== null && productSwiper !== undefined) {
+                    const swiper = new Swiper(productSwiper, {
+                        grabCursor: true,
+                        centeredSlides: true,
+                        slidesPerView: 'auto',
+                        keyboard: {
+                            enabled: true,
+                        },
+                        spaceBetween: 60,
+                        loop: true,
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                        },
+                        modules: [Pagination, Autoplay, Keyboard],
+                    });
+                }
+            });
+
         }
+    }
+
+    private getTicketProduct() {
+        this._productService.getPageProduct({
+            page: 1,
+            len: 10,
+            categoryId: 2,
+            type: '0'
+        }).subscribe(res => {
+            if(ValidationUtil.isNotNullAndNotUndefined(res)) {
+                this.products = res.body?.result || [];
+            }
+        });
     }
 }
