@@ -7,7 +7,7 @@ import { Product } from '../../../model/product.model';
 import { ProductService } from '../../../services/product.service';
 import { ValidationUtil } from '../../../utils/validation.util';
 import { environment } from '../../../../../environments/environment';
-import { faMoneyCheckDollar } from '@fortawesome/free-solid-svg-icons';
+import { faMoneyCheckDollar, faTag } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-home',
@@ -22,13 +22,21 @@ export class HomeComponent implements OnInit {
     isBrowser: boolean = false;
 
     products: Product[] = [] as Product[];
+    productTour1: Product[] = [] as Product[];
+    productTour2: Product[] = [] as Product[];
+    productTour3: Product[] = [] as Product[];
 
     imageUrl: string = environment.imgUrl;
 
     faMoneyCheckDollar = faMoneyCheckDollar;
+    faTag = faTag;
 
     ngOnInit(): void {
         this.getTicketProduct();
+        this.getProductTour1();
+        this.getProductTour2();
+        this.getProductTour3();
+
         this.isBrowser = isPlatformBrowser(this._platformId);
 
         this._seoService.setMetaTitle(
@@ -100,6 +108,9 @@ export class HomeComponent implements OnInit {
                             el: '.swiper-pagination',
                             clickable: true,
                         },
+                        autoplay: {
+                            delay: 3000
+                        },
                         modules: [Pagination, Autoplay, Keyboard],
                     });
                 }
@@ -117,6 +128,42 @@ export class HomeComponent implements OnInit {
         }).subscribe(res => {
             if(ValidationUtil.isNotNullAndNotUndefined(res)) {
                 this.products = res.body?.result || [];
+            }
+        });
+    }
+
+    private getProductTour1() {
+        this._productService.getPageProduct({
+            page: 1,
+            len: 8,
+            zoneCode: '01A10'
+        }).subscribe(res => {
+            if(ValidationUtil.isNotNullAndNotUndefined(res)) {
+                this.productTour1 = res.body?.result || [];
+            }
+        });
+    }
+
+    private getProductTour2() {
+        this._productService.getPageProduct({
+            page: 1,
+            len: 8,
+            zoneCode: '01A20'
+        }).subscribe(res => {
+            if(ValidationUtil.isNotNullAndNotUndefined(res)) {
+                this.productTour2 = res.body?.result || [];
+            }
+        });
+    }
+
+    private getProductTour3() {
+        this._productService.getPageProduct({
+            page: 1,
+            len: 8,
+            zoneCode: '01A30'
+        }).subscribe(res => {
+            if(ValidationUtil.isNotNullAndNotUndefined(res)) {
+                this.productTour3 = res.body?.result || [];
             }
         });
     }

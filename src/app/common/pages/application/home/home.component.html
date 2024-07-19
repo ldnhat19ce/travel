@@ -64,67 +64,165 @@
 </div>
 <!-- About End -->
 
-<div class="container-fluid destination py-5">
-    <div class="container py-5">
-        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <h1 class="section-title mb-0">Vé tham quan</h1>
-        </div>
-        <div class="product-swiper">
-            <div class="swiper" id="productSwiper">
-                <div class="swiper-wrapper">
-                    @if (products.length > 0) {
+@defer(when products.length > 0) {
+    <div class="container-fluid destination py-5">
+        <div class="container py-5">
+            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <h1 class="section-title mb-0">Vé tham quan</h1>
+            </div>
+            <div class="product-swiper">
+                <div class="swiper" id="productSwiper">
+                    <div class="swiper-wrapper">
+                        @if (products.length > 0) {
                         @for (item of products; track item.pdtCode) {
-                            <div class="swiper-slide"
-                            [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)"
-                            style="background: linear-gradient(to top, #0f2027, #203a4300, #2c536400),
-                            url('{{ imageUrl + item.filePath }}')
-                                no-repeat 50% 50% / cover">
-                                <span class="sp-code">#{{ item.pdtCode }}</span>
-                                <div>
-                                    <span class="h2">{{ item.pdtName }}</span>
-                                    <p class="d-flex gap-2">
-                                        <fa-icon [icon]="faMoneyCheckDollar"></fa-icon>
-                                        <span class="fw-bold text-orange">{{ item.retailAmt | number: '1.0-0' }} VNĐ</span>
-                                    </p>
-                                </div>
+                        <div class="swiper-slide"
+                            [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)" style="background: linear-gradient(to top, #0f2027, #203a4300, #2c536400),
+                                url('{{ imageUrl + item.filePath }}')
+                                    no-repeat 50% 50% / cover">
+                            <span class="sp-code">#{{ item.pdtCode }}</span>
+                            <div>
+                                <span class="h2">{{ item.pdtName }}</span>
+                                <p class="d-flex gap-2">
+                                    <fa-icon [icon]="faMoneyCheckDollar"></fa-icon>
+                                    <span class="fw-bold text-orange">{{ item.retailAmt | number: '1.0-0' }} VNĐ</span>
+                                </p>
                             </div>
+                        </div>
                         }
-                    }
+                        }
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
                 </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
             </div>
         </div>
     </div>
+}
 
-</div>
-
-<div class="container-fluid destination py-5">
-    <div class="container py-5">
-        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <h1 class="section-title mb-0">Tour Đà Nẵng</h1>
+@defer (when productTour1.length > 0) {
+    <div class="container-fluid destination py-5">
+        <div class="container py-5">
+            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <h1 class="section-title mb-0">Tour Đà Nẵng</h1>
+            </div>
+            <div class="row gx-2">
+                @if (productTour1.length > 0) {
+                @for (item of productTour1; track item.pdtCode) {
+                <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5 cursor-pointer" [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)">
+                    <div class="card card-span h-100 text-white rounded-3 d-flex flex-column justify-content-between">
+                        <img class="img-fluid rounded-3 h-100" [src]="imageUrl + item.filePath" [alt]="item.pdtName" onerror="this.onerror=null;this.src='./assets/img/not-found.jpg'"/>
+                        <div class="card-img-overlay">
+                            <span class="badge bg-danger p-2 ms-3">
+                                <fa-icon [className]="'me-2 fs-0'" [icon]="faTag"></fa-icon>
+                                <span class="fs-0">20%</span>
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3 flex-column">
+                                <span
+                                    class="mb-0 fw-bold text-1000 h-5 text-dark cursor-pointer">{{ item.pdtName }}</span>
+                                <div class="d-flex w-100 justify-content-between">
+                                    <span class="my-2 h5 fw-bold text-red-orange text-end">
+                                        {{ item.retailAmt | number: '1.0-0' }} VND
+                                    </span>
+                                    <span class="my-2 text-end text-decoration-line-through text-dark-gray">
+                                        {{ item.supplyAmt | number: '1.0-0' }} VND
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+                }
+            </div>
         </div>
-
     </div>
-</div>
+}
 
-<div class="container-fluid destination py-5">
-    <div class="container py-5">
-        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <h1 class="section-title mb-0">Tour Huế</h1>
+
+@defer (when productTour2.length > 0) {
+    <div class="container-fluid destination py-5">
+        <div class="container py-5">
+            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <h1 class="section-title mb-0">Tour Huế</h1>
+            </div>
+            <div class="row gx-2">
+                @if (productTour2.length > 0) {
+                @for (item of productTour2; track item.pdtCode) {
+                <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5 cursor-pointer" [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)">
+                    <div class="card card-span h-100 text-white rounded-3">
+                        <img class="img-fluid rounded-3 h-100" [src]="imageUrl + item.filePath" [alt]="item.pdtName" onerror="this.onerror=null;this.src='./assets/img/not-found.jpg'"/>
+                        <div class="card-img-overlay">
+                            <span class="badge bg-danger p-2 ms-3">
+                                <fa-icon [className]="'me-2 fs-0'" [icon]="faTag"></fa-icon>
+                                <span class="fs-0">20%</span>
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3 flex-column">
+                                <span
+                                    class="mb-0 fw-bold text-1000 h-5 text-dark cursor-pointer">{{ item.pdtName }}</span>
+                                <div class="d-flex w-100 justify-content-between">
+                                    <span class="my-2 h5 fw-bold text-red-orange text-end">
+                                        {{ item.retailAmt | number: '1.0-0' }} VND
+                                    </span>
+                                    <span class="my-2 text-end text-decoration-line-through text-dark-gray">
+                                        {{ item.supplyAmt | number: '1.0-0' }} VND
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+                }
+            </div>
         </div>
-
     </div>
-</div>
+}
 
-<div class="container-fluid destination py-5">
-    <div class="container py-5">
-        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <h1 class="section-title mb-0">Tour Hội An</h1>
+@defer (when productTour3.length > 0;) {
+    <div class="container-fluid destination py-5">
+        <div class="container py-5">
+            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <h1 class="section-title mb-0">Tour Hội An</h1>
+            </div>
+            <div class="row gx-2">
+                @if (productTour3.length > 0) {
+                @for (item of productTour3; track item.pdtCode) {
+                <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5 cursor-pointer" [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)">
+                    <div class="card card-span h-100 text-white rounded-3 ">
+                        <img class="img-fluid rounded-3 h-100" [src]="imageUrl + item.filePath" [alt]="item.pdtName" onerror="this.onerror=null;this.src='./assets/img/not-found.jpg'"/>
+                        <div class="card-img-overlay">
+                            <span class="badge bg-danger p-2 ms-3">
+                                <fa-icon [className]="'me-2 fs-0'" [icon]="faTag"></fa-icon>
+                                <span class="fs-0">20%</span>
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3 flex-column">
+                                <span
+                                    class="mb-0 fw-bold text-1000 h-5 text-dark cursor-pointer">{{ item.pdtName }}</span>
+                                <div class="d-flex w-100 justify-content-between">
+                                    <span class="my-2 h5 fw-bold text-red-orange text-end">
+                                        {{ item.retailAmt | number: '1.0-0' }} VND
+                                    </span>
+                                    <span class="my-2 text-end text-decoration-line-through text-dark-gray">
+                                        {{ item.supplyAmt | number: '1.0-0' }} VND
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+                }
+            </div>
         </div>
-
     </div>
-</div>
+}
+
 
 
 <!-- Services Start -->
