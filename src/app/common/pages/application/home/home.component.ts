@@ -7,7 +7,7 @@ import { Product } from '../../../model/product.model';
 import { ProductService } from '../../../services/product.service';
 import { ValidationUtil } from '../../../utils/validation.util';
 import { environment } from '../../../../../environments/environment';
-import { faMoneyCheckDollar, faTag } from '@fortawesome/free-solid-svg-icons';
+import { faCar, faClock, faLocationDot, faMoneyCheckDollar, faTag } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-home',
@@ -26,16 +26,22 @@ export class HomeComponent implements OnInit {
     productTour2: Product[] = [] as Product[];
     productTour3: Product[] = [] as Product[];
 
+    product: Product = {} as Product;
+
     imageUrl: string = environment.imgUrl;
 
     faMoneyCheckDollar = faMoneyCheckDollar;
     faTag = faTag;
+    faClock = faClock;
+    faLocationDot = faLocationDot;
+    faCar = faCar;
 
     ngOnInit(): void {
         this.getTicketProduct();
         this.getProductTour1();
         this.getProductTour2();
         this.getProductTour3();
+        this.getDetailProduct();
 
         this.isBrowser = isPlatformBrowser(this._platformId);
 
@@ -164,6 +170,14 @@ export class HomeComponent implements OnInit {
         }).subscribe(res => {
             if(ValidationUtil.isNotNullAndNotUndefined(res)) {
                 this.productTour3 = res.body?.result || [];
+            }
+        });
+    }
+
+    private getDetailProduct() {
+        this._productService.getDetailProduct("01000001").subscribe(res => {
+            if (ValidationUtil.isNotNullAndNotUndefined(res)) {
+                this.product = res.body || ({} as Product);
             }
         });
     }
