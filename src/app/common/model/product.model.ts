@@ -33,4 +33,5 @@ export interface Product {
     scheduleEng: string;
     policy: string;
     policyEng: string;
+    percent: number;
 }

@@ -116,7 +116,7 @@
                     <div class="card-img-overlay">
                         <span class="badge bg-danger p-2">
                             <fa-icon [className]="'me-2 fs-0'" [icon]="faTag"></fa-icon>
-                            <span class="fs-0">20%</span>
+                            <span class="fs-0">{{ item.percent }}%</span>
                         </span>
                     </div>
                     <div class="card-body">
@@ -141,7 +141,6 @@
 </div>
 }
 
-
 @defer (when productTour2.length > 0) {
 <div class="container-fluid destination py-5">
     <div class="container py-5">
@@ -159,7 +158,7 @@
                     <div class="card-img-overlay">
                         <span class="badge bg-danger p-2">
                             <fa-icon [className]="'me-2 fs-0'" [icon]="faTag"></fa-icon>
-                            <span class="fs-0">20%</span>
+                            <span class="fs-0">{{ item.percent }}%</span>
                         </span>
                     </div>
                     <div class="card-body">
@@ -201,7 +200,7 @@
                     <div class="card-img-overlay">
                         <span class="badge bg-danger p-2">
                             <fa-icon [className]="'me-2 fs-0'" [icon]="faTag"></fa-icon>
-                            <span class="fs-0">20%</span>
+                            <span class="fs-0">{{ item.percent }}%</span>
                         </span>
                     </div>
                     <div class="card-body">
