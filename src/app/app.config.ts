@@ -2,11 +2,12 @@ import {
     ApplicationConfig,
     importProvidersFrom,
     isDevMode,
+    provideZoneChangeDetection,
 } from '@angular/core';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideServiceWorker } from '@angular/service-worker';
 import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -15,6 +16,8 @@ import { jwtInterceptor } from './common/interceptor/jwt.interceptor';
 
 export const appConfig: ApplicationConfig = {
     providers: [
+        provideZoneChangeDetection({ eventCoalescing: true }),
+        // provideExperimentalZonelessChangeDetection(),
         provideRouter(
             routes,
             withInMemoryScrolling({
@@ -22,7 +25,7 @@ export const appConfig: ApplicationConfig = {
                 anchorScrolling: 'enabled',
             })
         ),
-        provideClientHydration(),
+        provideClientHydration(withEventReplay()),
         provideServiceWorker('ngsw-worker.js', {
             enabled: !isDevMode(),
             registrationStrategy: 'registerWhenStable:30000',

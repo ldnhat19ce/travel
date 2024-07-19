@@ -74,7 +74,7 @@
             <div class="swiper" id="productSwiper">
                 <div class="swiper-wrapper">
                     @if (products.length > 0) {
-                    @for (item of products; track item.pdtCode) {
+                    @for (item of products; track $index) {
                     <div class="swiper-slide"
                         [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)" style="background: linear-gradient(to top, #0f2027, #203a4300, #2c536400),
                                 url('{{ imageUrl + item.filePath }}')
