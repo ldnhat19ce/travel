@@ -34,18 +34,18 @@
                 }
                 }
                 }
-                <div class="nav-item d-flex justify-content-center align-items-center">
+                <div class="nav-item d-flex justify-content-xl-center align-items-center">
                     <div class="dropdown pe-2">
                         <span class="dropdown-toggle cursor-pointer text-primary" data-bs-toggle="dropdown"><i class="fas fa-globe me-2"></i>{{ 'lbl.header.002' | translate }}</span>
                         <div class="dropdown-menu rounded">
-                            <a role="button" (click)="onChangeLanguage('vn')" class="dropdown-item">
+                            <button role="button" (click)="onChangeLanguage('vn')" class="dropdown-item">
                                 <svg width="24" height="24" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg">
                                     <path fill="#da251d" d="M0 0h30v20H0z" />
                                     <path fill="#ff0" d="m15 4-3.53 10.85 9.24-6.7H9.29l9.24 6.7z" />
                                 </svg>
                                 Tiếng việt
-                            </a>
-                            <a (click)="onChangeLanguage('us')" class="dropdown-item">
+                            </button>
+                            <button (click)="onChangeLanguage('us')" class="dropdown-item">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 30" width="24" height="24">
                                     <clipPath id="a">
                                         <path d="M25 15h25v15zv15H0zH0V0zV0h25z" />
@@ -57,7 +57,7 @@
                                         stroke-width="2" />
                                 </svg>
                                 English
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
