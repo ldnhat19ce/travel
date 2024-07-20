@@ -6,6 +6,7 @@ import { HeaderComponent } from './header.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { TransformCategoryPipe } from '../../common/pipe/transform-category.pipe';
 import { GetCateUrlPipe } from '../../common/pipe/get-cate-url.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
     declarations: [HeaderComponent],
@@ -14,7 +15,8 @@ import { GetCateUrlPipe } from '../../common/pipe/get-cate-url.pipe';
         HeaderRoutingModule,
         TranslateModule,
         TransformCategoryPipe,
-        GetCateUrlPipe
+        GetCateUrlPipe,
+        FontAwesomeModule
     ],
     exports: [HeaderComponent]
 })

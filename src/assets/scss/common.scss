@@ -191,11 +191,12 @@ $white: #fff;
 	.dropdown-toggle {
 		&::after {
 			border: none;
-			content: "\f107";
+			content: url("data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%2313357b;stroke:%2313357b;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px; stroke-width:3px%7D%3C/style%3E%3C/defs%3E%3Ctitle/%3E%3Cg id='chevron-bottom'%3E%3Cline class='cls-1' x1='16' x2='7' y1='20.5' y2='11.5'/%3E%3Cline class='cls-1' x1='25' x2='16' y1='11.5' y2='20.5'/%3E%3C/g%3E%3C/svg%3E");
 			font-family: $font-family_2;
 			font-weight: 900;
 			vertical-align: middle;
-			margin-left: 8px;
+			margin-left: 0px;
+            width: 13px;
 		}
 	}
 	.nav-item {

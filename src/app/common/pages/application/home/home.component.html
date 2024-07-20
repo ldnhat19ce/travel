@@ -322,13 +322,13 @@
                                 </p>
                             </div>
                             <div class="service-icon p-4">
-                                <i class="fa fa-solid fa-car fa-4x text-primary"></i>
+                                <fa-icon [className]="'text-primary'" size="4x" [icon]="faCar"></fa-icon>
                             </div>
                         </div>
                     </div>
                     <div class="col-12">
                         <div
-                            class="service-content-inner d-flex align-items-center  bg-white border border-primary rounded p-4 pe-0">
+                            class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
                             <div class="service-content text-end">
                                 <h5 class="mb-4">Đặt vé máy bay</h5>
                                 <p class="mb-0">
@@ -338,7 +338,7 @@
                                 </p>
                             </div>
                             <div class="service-icon p-4">
-                                <i class="fa fa-solid fa-plane fa-4x text-primary"></i>
+                                <fa-icon [className]="'text-primary'" size="4x" [icon]="faPlane"></fa-icon>
                             </div>
                         </div>
                     </div>
@@ -353,7 +353,7 @@
                                 </p>
                             </div>
                             <div class="service-icon p-4">
-                                <i class="fa fa-hotel fa-4x text-primary"></i>
+                                <fa-icon [className]="'text-primary'" size="4x" [icon]="faHotel"></fa-icon>
                             </div>
                         </div>
                     </div>
@@ -365,7 +365,7 @@
                         <div
                             class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
                             <div class="service-icon p-4">
-                                <i class="fa fa-globe fa-4x text-primary"></i>
+                                <fa-icon [className]="'text-primary'" size="4x" [icon]="faGlobe"></fa-icon>
                             </div>
                             <div class="service-content">
                                 <h5 class="mb-4">Đặt tour</h5>
@@ -380,7 +380,7 @@
                         <div
                             class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
                             <div class="service-icon p-4">
-                                <i class="fa fa-solid fa-compass fa-4x text-primary"></i>
+                                <fa-icon [className]="'text-primary'" size="4x" [icon]="faCompass"></fa-icon>
                             </div>
                             <div class="service-content">
                                 <h5 class="mb-4">Vé tham quan</h5>
@@ -396,7 +396,7 @@
                         <div
                             class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
                             <div class="service-icon p-4">
-                                <i class="fa fa-user fa-4x text-primary"></i>
+                                <fa-icon [className]="'text-primary'" size="4x" [icon]="faUser"></fa-icon>
                             </div>
                             <div class="service-content">
                                 <h5 class="mb-4">Dịch vụ chèo sup</h5>
@@ -412,11 +412,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-12">
-                <div class="text-center">
-                    <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Xem thêm</a>
-                </div>
-            </div> -->
         </div>
     </div>
 </div>
@@ -445,12 +440,14 @@
                                                 class="btn btn-primary text-white rounded-pill border py-2 px-3">20
                                                 Photos</a>
                                             <h4 class="text-white mb-2 mt-3">Thành phố Đà Nẵng</h4>
-                                            <a href="#" class="btn-hover text-white">View All Place <i
-                                                    class="fa fa-arrow-right ms-2"></i></a>
+                                            <a href="#" class="btn-hover text-white">View All Place
+                                                <fa-icon [className]="'ms-2'" [icon]="faArrowRight"></fa-icon>
+                                            </a>
                                         </div>
                                         <div class="search-icon">
-                                            <a href="./assets/img/destination-1.jpg" data-lightbox="destination-1"><i
-                                                    class="fa fa-square-plus fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+                                            <a href="./assets/img/destination-1.jpg" data-lightbox="destination-1">
+                                                <fa-icon [className]="'btn btn-light btn-lg-square text-primary'" size="1x" [icon]="faPlusSquare"></fa-icon>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -462,12 +459,14 @@
                                                 class="btn btn-primary text-white rounded-pill border py-2 px-3">20
                                                 Photos</a>
                                             <h4 class="text-white mb-2 mt-3">Huế</h4>
-                                            <a href="#" class="btn-hover text-white">View All Place <i
-                                                    class="fa fa-arrow-right ms-2"></i></a>
+                                            <a href="#" class="btn-hover text-white">View All Place
+                                                <fa-icon [className]="'ms-2'" [icon]="faArrowRight"></fa-icon>
+                                            </a>
                                         </div>
                                         <div class="search-icon">
-                                            <a href="img/destination-2.jpg" data-lightbox="destination-2"><i
-                                                    class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+                                            <a href="img/destination-2.jpg" data-lightbox="destination-2">
+                                                <fa-icon [className]="'btn btn-light btn-lg-square text-primary'" size="1x" [icon]="faPlusSquare"></fa-icon>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -479,12 +478,14 @@
                                                 class="btn btn-primary text-white rounded-pill border py-2 px-3">20
                                                 Photos</a>
                                             <h4 class="text-white mb-2 mt-3">Hội An</h4>
-                                            <a href="#" class="btn-hover text-white">View All Place <i
-                                                    class="fa fa-arrow-right ms-2"></i></a>
+                                            <a href="#" class="btn-hover text-white">View All Place
+                                                <fa-icon [className]="'ms-2'" [icon]="faArrowRight"></fa-icon>
+                                            </a>
                                         </div>
                                         <div class="search-icon">
-                                            <a href="img/destination-7.jpg" data-lightbox="destination-7"><i
-                                                    class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+                                            <a href="img/destination-7.jpg" data-lightbox="destination-7">
+                                                <fa-icon [className]="'btn btn-light btn-lg-square text-primary'" size="1x" [icon]="faPlusSquare"></fa-icon>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -496,12 +497,14 @@
                                                 class="btn btn-primary text-white rounded-pill border py-2 px-3">20
                                                 Photos</a>
                                             <h4 class="text-white mb-2 mt-3">Cù Lao Chàm</h4>
-                                            <a href="#" class="btn-hover text-white">View All Place <i
-                                                    class="fa fa-arrow-right ms-2"></i></a>
+                                            <a href="#" class="btn-hover text-white">View All Place
+                                                <fa-icon [className]="'ms-2'" [icon]="faArrowRight"></fa-icon>
+                                            </a>
                                         </div>
                                         <div class="search-icon">
-                                            <a href="img/destination-8.jpg" data-lightbox="destination-8"><i
-                                                    class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+                                            <a href="img/destination-8.jpg" data-lightbox="destination-8">
+                                                <fa-icon [className]="'btn btn-light btn-lg-square text-primary'" size="1x" [icon]="faPlusSquare"></fa-icon>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -515,54 +518,18 @@
                                     <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20
                                         Photos</a>
                                     <h4 class="text-white mb-2 mt-3">Lý Sơn</h4>
-                                    <a href="#" class="btn-hover text-white">View All Place <i
-                                            class="fa fa-arrow-right ms-2"></i></a>
+                                    <a href="#" class="btn-hover text-white">View All Place
+                                        <fa-icon [className]="'ms-2'" [icon]="faArrowRight"></fa-icon>
+                                    </a>
                                 </div>
                                 <div class="search-icon">
-                                    <a href="img/destination-9.jpg" data-lightbox="destination-4"><i
-                                            class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+                                    <a href="img/destination-9.jpg" data-lightbox="destination-4">
+                                        <fa-icon [className]="'btn btn-light btn-lg-square text-primary'" size="1x" [icon]="faPlusSquare"></fa-icon>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-lg-4">
-                            <div class="destination-img">
-                                <img class="img-fluid rounded w-100" src="img/destination-4.jpg" alt="">
-                                <div class="destination-overlay p-4">
-                                    <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a>
-                                    <h4 class="text-white mb-2 mt-3">Los angelas</h4>
-                                    <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
-                                </div>
-                                <div class="search-icon">
-                                    <a href="img/destination-4.jpg" data-lightbox="destination-4"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="destination-img">
-                                <img class="img-fluid rounded w-100" src="img/destination-5.jpg" alt="">
-                                <div class="destination-overlay p-4">
-                                    <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a>
-                                    <h4 class="text-white mb-2 mt-3">Los angelas</h4>
-                                    <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
-                                </div>
-                                <div class="search-icon">
-                                    <a href="img/destination-5.jpg" data-lightbox="destination-5"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="destination-img">
-                                <img class="img-fluid rounded w-100" src="img/destination-6.jpg" alt="">
-                                <div class="destination-overlay p-4">
-                                    <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a>
-                                    <h4 class="text-white mb-2 mt-3">Los angelas</h4>
-                                    <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
-                                </div>
-                                <div class="search-icon">
-                                    <a href="img/destination-6.jpg" data-lightbox="destination-6"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
-                                </div>
-                            </div>
-                        </div> -->
+
                     </div>
                 </div>
             </div>
@@ -574,7 +541,6 @@
 <div class="container-fluid destination py-5">
     <div class="container py-5">
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <!-- <h5 class="section-title px-3">Cộng đồng</h5> -->
             <h1 class="section-title mb-0">Cộng đồng</h1>
         </div>
 

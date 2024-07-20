@@ -7,7 +7,7 @@ import { Product } from '../../../model/product.model';
 import { ProductService } from '../../../services/product.service';
 import { ValidationUtil } from '../../../utils/validation.util';
 import { environment } from '../../../../../environments/environment';
-import { faCar, faClock, faLocationDot, faMoneyCheckDollar, faTag } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faCar, faClock, faCompass, faGlobe, faHotel, faLocationDot, faMoneyCheckDollar, faPlane, faPlusSquare, faTag, faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-home',
@@ -35,6 +35,13 @@ export class HomeComponent implements OnInit {
     faClock = faClock;
     faLocationDot = faLocationDot;
     faCar = faCar;
+    faArrowRight = faArrowRight;
+    faPlusSquare = faPlusSquare;
+    faPlane = faPlane;
+    faHotel = faHotel;
+    faGlobe = faGlobe;
+    faCompass = faCompass;
+    faUser = faUser;
 
     ngOnInit(): void {
         this.getTicketProduct();

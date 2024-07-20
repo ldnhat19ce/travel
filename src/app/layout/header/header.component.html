@@ -36,7 +36,10 @@
                 }
                 <div class="nav-item d-flex justify-content-xl-center align-items-center">
                     <div class="dropdown pe-2">
-                        <span class="dropdown-toggle cursor-pointer text-primary" data-bs-toggle="dropdown"><i class="fas fa-globe me-2"></i>{{ 'lbl.header.002' | translate }}</span>
+                        <span class="dropdown-toggle cursor-pointer text-primary" data-bs-toggle="dropdown">
+                            <fa-icon [className]="'me-2'" [icon]="faGlobe"></fa-icon>
+                            {{ 'lbl.header.002' | translate }}
+                        </span>
                         <div class="dropdown-menu rounded">
                             <button role="button" (click)="onChangeLanguage('vn')" class="dropdown-item">
                                 <svg width="24" height="24" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg">
