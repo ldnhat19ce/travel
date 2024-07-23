@@ -20,8 +20,7 @@
     });
 
     $(".back-to-top").click(function () {
-        // console.log("xxx")
-        // $("html, body").animate({ scrollTop: 0 }, 1500, "easeInOutExpo");
+        window.scrollTo({top: 0, behavior: 'smooth'});
         return false;
     });
 })(jQuery);

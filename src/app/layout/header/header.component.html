@@ -7,10 +7,20 @@
             <h1 class="m-0 h1">HeroTravelDN</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"  aria-labelledby="Collapse" aria-label="Collapse">
-            <span class="fa fa-bars"></span>
+            <fa-icon [icon]="faBars"></fa-icon>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
+                <div class="nav-item align-self-center">
+                    <div class="search">
+                        <div class="search__wrapper">
+                            <input type="text" name="" placeholder="Tìm kiếm vé, tour..." class="search__field">
+                            <button class="search__icon">
+                                <fa-icon [icon]="faSearch"></fa-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 @for (item of categories; track item.id) {
                 @if (item.level === 0) {
                 @if (item.hasChild > 0) {

@@ -7,13 +7,16 @@
 </div>
 
 <div class="loaded-content" [ngClass]="loaded ? '' : 'd-none'">
-    <div class="container-fluid bg-breadcrumb" style="background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url('{{ imageUrl }}{{ category.imageUrl }}');
+    <div class="container-fluid bg-breadcrumb" style="
+        background: linear-gradient(rgba(19, 53, 123, 0.5),
+                    rgba(19, 53, 123, 0.5)),
+                    url('{{ imageUrl }}{{ category.imageUrl }}');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center center;
         padding: 200px 0 50px 0;
         background-attachment: fixed;">
-        <div class="container text-center py-5" style="max-width: 900px;">
+        <div class="container text-center py-5">
             @if (currentLang === 'vn') {
             <span class="text-white display-3 mb-4 h1">{{ category.name }}</span>
             <ul class="breadcrumb justify-content-center mb-0">
@@ -34,7 +37,7 @@
 
     <div class="container-fluid blog py-5">
         <div class="container py-5">
-            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <div class="mx-auto text-center mb-5">
                 <span class="section-title px-3 h5">
                     @if (currentLang === 'vn') {
                     {{ category.name }}
@@ -51,22 +54,20 @@
                 </p>
             </div>
             <div class="row g-4">
-                @for (item of products | paginate: paginationConfig; track item.pdtCode) {
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-item h-100 d-flex flex-column justify-content-between border rounded-1">
-                            <div class="blog-img">
-                                <div class="blog-img-inner">
-                                    <img class="img-fluid w-100"
-                                        [src]="imageUrl + item.filePath"
-                                        [alt]="item.pdtName"
-                                        onerror="this.onerror=null;this.src='./assets/img/not-found.jpg'">
-                                    <div class="blog-icon">
-                                        <button class="my-auto border-0 bg-transparent" (click)="copyToClipboard(item)">
-                                            <fa-icon [icon]="faLink" size="2x" [className]="'text-white'"></fa-icon>
-                                        </button>
-                                    </div>
+                @for (item of products | paginate: paginationConfig; track $index) {
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-item h-100 d-flex flex-column justify-content-between border rounded-1">
+                        <div class="blog-img">
+                            <div class="blog-img-inner">
+                                <img class="img-fluid w-100" [src]="imageUrl + item.filePath" [alt]="item.pdtName"
+                                    onerror="this.onerror=null;this.src='./assets/img/not-found.jpg'">
+                                <div class="blog-icon">
+                                    <button class="my-auto border-0 bg-transparent" (click)="copyToClipboard(item)">
+                                        <fa-icon [icon]="faLink" size="2x" [className]="'text-white'"></fa-icon>
+                                    </button>
                                 </div>
-                                <!-- <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
+                            </div>
+                            <!-- <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
                                     <small class="flex-fill text-center border-end py-2">
                                         <fa-icon [icon]="faCalendarAlt" [className]="'text-primary me-2'"></fa-icon>
                                         28 Jan 2050
@@ -80,50 +81,49 @@
                                         1K
                                     </a>
                                 </div> -->
-                            </div>
-                            <div class="blog-content rounded-bottom p-4">
-                                <div class="row">
-                                    <span [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)" class="fw-bold h5 col-12 justify-content-center d-flex cursor-pointer">{{ item.pdtName }}</span>
-                                    <div class="col-7 d-flex flex-column">
-                                        <small class="my-2">
-                                            <fa-icon [icon]="faClock"></fa-icon>
-                                            <span class="fw-bold mx-1">Thời gian:</span>
-                                            {{ item.option1 }}
-                                        </small>
-                                        <small class="my-2">
-                                            <fa-icon [icon]="faLocationDot"></fa-icon>
-                                            <span class="fw-bold mx-1">Lịch trình:</span>
-                                            {{ item.option2 }}
-                                        </small>
-                                        <small class="my-2">
-                                            <fa-icon [icon]="faCar"></fa-icon>
-                                            <span class="fw-bold mx-1">Phương tiện:</span>
-                                            {{ item.option3 }}
-                                        </small>
-                                    </div>
-                                    <div class="col-5 d-flex flex-column">
-                                        <p class="my-2 h5 fw-bold text-red-orange text-end">
-                                            {{ item.retailAmt | number: '1.0-0' }} VND
-                                        </p>
-                                        <p class="my-2 text-end text-decoration-line-through text-gray">
-                                            {{ item.supplyAmt | number: '1.0-0' }} VND
-                                        </p>
-                                        <a [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)" class="btn btn-primary rounded-pill px-2">Chi tiết</a>
-                                    </div>
+                        </div>
+                        <div class="blog-content rounded-bottom p-4">
+                            <div class="row">
+                                <span [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)"
+                                    class="fw-bold h5 col-12 justify-content-center d-flex cursor-pointer">{{
+                                    item.pdtName }}</span>
+                                <div class="col-7 d-flex flex-column">
+                                    <small class="my-2">
+                                        <fa-icon [icon]="faClock"></fa-icon>
+                                        <span class="fw-bold mx-1">Thời gian:</span>
+                                        {{ item.option1 }}
+                                    </small>
+                                    <small class="my-2">
+                                        <fa-icon [icon]="faLocationDot"></fa-icon>
+                                        <span class="fw-bold mx-1">Lịch trình:</span>
+                                        {{ item.option2 }}
+                                    </small>
+                                    <small class="my-2">
+                                        <fa-icon [icon]="faCar"></fa-icon>
+                                        <span class="fw-bold mx-1">Phương tiện:</span>
+                                        {{ item.option3 }}
+                                    </small>
+                                </div>
+                                <div class="col-5 d-flex flex-column">
+                                    <p class="my-2 h5 fw-bold text-red-orange text-end">
+                                        {{ item.retailAmt | number: '1.0-0' }} VND
+                                    </p>
+                                    <p class="my-2 text-end text-decoration-line-through text-gray">
+                                        {{ item.supplyAmt | number: '1.0-0' }} VND
+                                    </p>
+                                    <a [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)"
+                                        class="btn btn-primary rounded-pill px-2">Chi tiết</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 }
 
                 @if (totalItems > len) {
-                    <div class="col-12">
-                        <app-pagination
-                            [config]="paginationConfig"
-                            (pageChange)="onChangePage($event)"
-
-                        ></app-pagination>
-                    </div>
+                <div class="col-12">
+                    <app-pagination [config]="paginationConfig" (pageChange)="onChangePage($event)"></app-pagination>
+                </div>
                 }
             </div>
         </div>
@@ -131,5 +131,3 @@
 
 </div>
 <app-snackbar></app-snackbar>
-
-

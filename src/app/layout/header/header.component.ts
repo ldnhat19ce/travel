@@ -7,7 +7,7 @@ import { Error } from '../../common/model/error.model';
 import { LanguageUtil } from '../../common/utils/language.util';
 import { Category } from '../../common/model/category.model';
 import { Data } from '../../common/model/data.model';
-import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faGlobe, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-header',
@@ -23,6 +23,8 @@ export class HeaderComponent implements OnInit {
     currentLang: string = "vn";
 
     faGlobe = faGlobe;
+    faSearch = faSearch;
+    faBars = faBars;
 
     constructor() {
 
