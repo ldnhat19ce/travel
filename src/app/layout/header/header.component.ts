@@ -8,6 +8,10 @@ import { LanguageUtil } from '../../common/utils/language.util';
 import { Category } from '../../common/model/category.model';
 import { Data } from '../../common/model/data.model';
 import { faBars, faGlobe, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { Product } from '../../common/model/product.model';
+import { ProductService } from '../../common/services/product.service';
+import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-header',
@@ -15,20 +19,23 @@ import { faBars, faGlobe, faSearch } from '@fortawesome/free-solid-svg-icons';
     styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnInit {
-
+    private _productService = inject(ProductService);
     private _categoryService = inject(CategoryService);
     private _localStorageService = inject(LocalStorageService);
+    private _router = inject(Router);
 
     categories: Category[] = [] as Category[];
+
     currentLang: string = "vn";
+    query: string = "";
 
     faGlobe = faGlobe;
     faSearch = faSearch;
     faBars = faBars;
 
-    constructor() {
+    products: Product[] = [] as Product[];
 
-    }
+    searchControl = new FormControl('');
 
     ngOnInit(): void {
         this.currentLang = LanguageUtil.getLanguage(this._localStorageService);
@@ -43,10 +50,41 @@ export class HeaderComponent implements OnInit {
                 let error: Error = err.error;
             }
         });
+
+        this.searchControl.valueChanges.subscribe(value => {
+            if(value !== null && value !== undefined) {
+                this.query = value;
+                if(value.length >= 3) {
+                    this.getListProduct(value);
+                }
+            }
+        });
     }
 
     onChangeLanguage(language: string) {
         this._localStorageService.setItem(CommonConstant.LOCAL_CURRENT_LANG, language);
         location.reload();
+    }
+
+    onChangeQuery() {
+        this.products = [];
+        this._router.navigateByUrl("/product/search?query=" + this.query);
+    }
+
+    private getListProduct(query: string) {
+        this._productService.getPageProduct(this.getParamProduct(query)).subscribe(res => {
+            if(res !== null && res !== undefined) {
+                this.products = res.body?.result || [];
+            }
+        });
+    }
+
+
+    private getParamProduct(query: string) {
+        return {
+            page: 1,
+            limit: 5,
+            query: query
+        }
     }
 }

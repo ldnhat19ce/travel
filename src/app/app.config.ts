@@ -13,6 +13,7 @@ import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@ang
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { httpTranslateLoaderFactory } from './common/utils/translate-browser.loader';
 import { jwtInterceptor } from './common/interceptor/jwt.interceptor';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -39,6 +40,6 @@ export const appConfig: ApplicationConfig = {
                     deps: [HttpClient],
                 },
             })
-        )
+        ), provideAnimationsAsync()
     ],
 };

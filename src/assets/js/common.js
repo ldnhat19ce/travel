@@ -1,7 +1,6 @@
 (function ($) {
     "use strict";
 
-
     // Sticky Navbar
     $(window).scroll(function () {
         if ($(this).scrollTop() > 45) {
@@ -20,7 +19,7 @@
     });
 
     $(".back-to-top").click(function () {
-        window.scrollTo({top: 0, behavior: 'smooth'});
+        window.scrollTo({ top: 0, behavior: "smooth" });
         return false;
     });
 })(jQuery);

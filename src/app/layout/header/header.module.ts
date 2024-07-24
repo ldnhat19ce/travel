@@ -7,6 +7,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TransformCategoryPipe } from '../../common/pipe/transform-category.pipe';
 import { GetCateUrlPipe } from '../../common/pipe/get-cate-url.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatInputModule} from '@angular/material/input';
+import { NormalizeViPipe } from '../../common/pipe/normalize-vi.pipe';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [HeaderComponent],
@@ -16,7 +21,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         TranslateModule,
         TransformCategoryPipe,
         GetCateUrlPipe,
-        FontAwesomeModule
+        FontAwesomeModule,
+        FormsModule,
+        MatAutocompleteModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        NormalizeViPipe,
+        RouterModule
     ],
     exports: [HeaderComponent]
 })
