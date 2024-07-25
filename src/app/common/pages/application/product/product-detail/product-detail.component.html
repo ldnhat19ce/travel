@@ -87,7 +87,16 @@
                         <span><fa-icon [icon]="faCar" [className]="'mx-1'"></fa-icon>Phương tiện: </span>
                         <span class="fw-bold">{{ product.option3 }}</span>
                     </div>
-
+                    <div class="col-12 d-flex justify-content-center align-items-center">
+                        <button
+                            class="btn btn-primary"
+                            aria-label="Đặt dịch vụ"
+                            [routerLink]="'/checkout/product/' + product.pdtCode + '/' + (product.pdtName | normalizeVi)">Đặt dịch vụ</button>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <span>Hoặc Liên hệ qua số điện thoại: </span>
+                        <span class="text-red-orange">&nbsp;087.6692.882</span>
+                    </div>
                 </div>
             </div>
             <div class="col-12">
