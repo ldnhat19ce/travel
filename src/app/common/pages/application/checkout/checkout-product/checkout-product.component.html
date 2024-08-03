@@ -1,12 +1,24 @@
-<div class="loader-rouding" style="height: 600px;" [ngClass]="loaded ? 'd-none' : ''">
+<!-- <div class="loader-rouding" style="height: 600px;" [ngClass]="loaded ? 'd-none' : ''">
     <div class="top-50 start-50 position-fixed container-fluid" [ngClass]="loaded ? 'd-none' : ''">
+        <div class="loader" [ngClass]="loaded ? 'd-none' : ''">
+
+        </div>
+    </div>
+</div> -->
+<div class="loader-rouding position-fixed z-3"
+    style="top: 0;bottom: 0;left: 0;right: 0;background-color:rgba(0, 0, 0, 0.1);"
+    [ngClass]="loaded ? 'd-none' : ''">
+    <div class="top-50 start-50 position-fixed container-fluid"
+    [ngClass]="loaded ? 'd-none' : ''">
         <div class="loader" [ngClass]="loaded ? 'd-none' : ''">
 
         </div>
     </div>
 </div>
 
-<div class="loaded-content" [ngClass]="loaded ? '' : 'd-none'">
+<!-- <div class="loaded-content" [ngClass]="loaded ? '' : 'd-none'"> -->
+
+<div class="loaded-content">
     <div class="container-fluid bg-breadcrumb" style="background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url('{{ imageUrl }}{{ product.imageUrl }}');
         background-repeat: no-repeat;
         background-size: cover;
@@ -40,198 +52,213 @@
         <div class="py-5 text-center">
             <h1>Đặt dịch vụ</h1>
         </div>
-        <div class="row mx-5 border-top">
-            <div class="col-md-8 py-3">
-                <div class="row">
-                    <span class="h4 col-12 py-3">Thông tin liên hệ</span>
-                    <div class="col-12 col-xl-4 mb-4">
-                        <label for="First name"> Họ và tên </label>
-                        <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+        <div class="row">
+            <div class="col-xl-8">
+                <div class="card position-relative d-flex flex-column text-break border-pink-horror"
+                    [formGroup]="checkoutForm">
+                    <div class="card-body">
+                        <ul class="activity-checkout mb-0 px-4 mt-3">
+                            <li class="checkout-item">
+                                <div class="avatar checkout-icon p-1">
+                                    <div class="avatar-title rounded-circle bg-primary">
+                                        <fa-icon [icon]="faReceipt"></fa-icon>
+                                    </div>
+                                </div>
+                                <div class="feed-item-list">
+                                    <span class="h4 text-primary">Thông tin liên hệ</span>
+                                    <div class="row my-3">
+                                        <div class="col-12 col-xl-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="name">Họ và tên</label>
+                                                <input id="name" type="text" formControlName="name" class="form-control"
+                                                    placeholder="Họ và tên" aria-label="Họ và tên"
+                                                    [ngClass]="{'is-invalid': submitted && f['name'].errors }">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xl-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="billing-email-address">Email</label>
+                                                <input id="email" type="text" formControlName="email"
+                                                    class="form-control" placeholder="Email" aria-label="Email">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xl-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="phone">Điện thoại</label>
+                                                <input id="phone" type="tel" formControlName="phone"
+                                                    class="form-control" placeholder="Điện thoại"
+                                                    aria-label="Điện thoại"
+                                                    [ngClass]="{'is-invalid': submitted && f['phone'].errors }">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 col-12">
+                                            <label class="form-label" for="address">Địa chỉ</label>
+                                            <textarea class="form-control" id="address" formControlName="address"
+                                                rows="3" placeholder="Địa chỉ" aria-label="Địa chỉ"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="checkout-item">
+                                <div class="avatar checkout-icon p-1">
+                                    <div class="avatar-title rounded-circle bg-primary">
+                                        <fa-icon [icon]="faUsps"></fa-icon>
+                                    </div>
+                                </div>
+                                <div class="feed-item-list">
+                                    <span class="h4 text-primary">Thông tin Dịch vụ</span>
+                                    <div class="row my-3">
+                                        <div class="col-12 col-xl-3">
+                                            <div class="mb-3">
+                                                <label for="adult">Người lớn</label>
+                                                <select class="form-select" id="adult" formControlName="adult">
+                                                    <option value="1">01</option>
+                                                    <option value="2" selected>02</option>
+                                                    <option value="3">03</option>
+                                                    <option value="4">04</option>
+                                                    <option value="5">05</option>
+                                                    <option value="6">06</option>
+                                                    <option value="7">07</option>
+                                                    <option value="8">08</option>
+                                                    <option value="9">09</option>
+                                                    <option value="10">10</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xl-3">
+                                            <div class="mb-3">
+                                                <label for="childrent1">Trẻ em (5 - 10 tuổi)</label>
+                                                <select class="form-select" id="childrent1"
+                                                    formControlName="childrent1">
+                                                    <option value="0" selected>00</option>
+                                                    <option value="1">01</option>
+                                                    <option value="2">02</option>
+                                                    <option value="3">03</option>
+                                                    <option value="4">04</option>
+                                                    <option value="5">05</option>
+                                                    <option value="6">06</option>
+                                                    <option value="7">07</option>
+                                                    <option value="8">08</option>
+                                                    <option value="9">09</option>
+                                                    <option value="10">10</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xl-3">
+                                            <div class="mb-3">
+                                                <label for="childrent2">Trẻ em (dưới 5 tuổi)</label>
+                                                <select class="form-select" id="childrent2"
+                                                    formControlName="childrent2">
+                                                    <option value="0" selected>00</option>
+                                                    <option value="1">01</option>
+                                                    <option value="2">02</option>
+                                                    <option value="3">03</option>
+                                                    <option value="4">04</option>
+                                                    <option value="5">05</option>
+                                                    <option value="6">06</option>
+                                                    <option value="7">07</option>
+                                                    <option value="8">08</option>
+                                                    <option value="9">09</option>
+                                                    <option value="10">10</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xl-3">
+                                            <div class="mb-3">
+                                                <label for="dateInit">Thời gian khởi hành</label>
+                                                <input class="form-control" type="text" placeholder="mm/dd/yyyy"
+                                                    matInput [matDatepicker]="picker" readonly (click)="picker.open()"
+                                                    (dateChange)="onChangeDate($event)"
+                                                    [ngClass]="{'is-invalid': submitted && f['dateInit'].errors }">
+                                                <mat-datepicker #picker></mat-datepicker>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label class="form-label" for="remark">Ghi chú</label>
+                                            <textarea class="form-control" id="remark" formControlName="remark" rows="3"
+                                                placeholder="Ghi chú" aria-label="Ghi chú"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="col-12 col-xl-4 mb-4">
-                        <label for="La\st name"> Email </label>
-                        <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
-                    </div>
-                    <div class="col-12 col-xl-4 mb-4">
-                        <label for="La\st name"> Điện thoại </label>
-                        <input type="tel" class="form-control" placeholder="Last name" aria-label="Last name">
-                    </div>
-                    <div class="col-12 col-xl-4 mb-4">
-                        <label for="La\st name"> Địa chỉ </label>
-                        <input type="tel" class="form-control" placeholder="Last name" aria-label="Last name">
-                    </div>
                 </div>
 
-                <div class="input-group col mb-4">
-                    <div class="input-group-text">Điện</div>
-                    <input type="text" class="form-control" placeholder="Username">
-                </div>
-
-                <div class="mb-4">
-                    <label for="email">Email (optional)</label>
-                    <input type="text" class="form-control" placeholder="you@example.com" aria-label="email">
-                </div>
-
-                <div class="mb-4">
-                    <label for="Address">Address</label>
-                    <input type="text" class="form-control" placeholder="1234 Main St" aria-label="Address">
-                </div>
-
-                <div class="mb-4">
-                    <label for="Address2">Address 2 (optional)</label>
-                    <input type="text" class="form-control" placeholder="Appartment or suite" aria-label="Address2">
-                </div>
-
-                <div class="row">
+                <div class="row my-4">
                     <div class="col">
-                        <label for="country">Country</label>
-                        <select class="form-select">
-                            <option selected>Choose...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                        <button routerLink="/product/list/2/ve-tham-quan" class="btn btn-link text-muted">
+                            <fa-icon [icon]="faArrowLeft"></fa-icon>
+                            Tiếp tục mua hàng
+                        </button>
                     </div>
                     <div class="col">
-                        <label for="state">State</label>
-                        <select class="form-select">
-                            <option selected>Choose...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                    <div class="col mb-4">
-                        <label for="zip">Zip Code</label>
-                        <input type="text" class="form-control" aria-label="zip">
-                    </div>
-
-                    <hr class="mb-4">
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Shipping address is the same as my billing address
-                        </label>
-                    </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                        <label class="form-check-label" for="flexCheckChecked">
-                            Save this information for next time
-                        </label>
-                    </div>
-
-                    <hr class="mb-4">
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                            checked>
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            Credit card (Default)
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            Debit card
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                        <label class="form-check-label" for="flexRadioDefault3">
-                            Paypal
-                        </label>
-                    </div>
-
-                    <div class="row">
-                        <div class="col mb-4">
-                            <label for="Card1">
-                                Name on card
-                            </label>
-                            <input type="text" class="form-control" aria-label="card1">
-                            <small class="text-muted">
-                                Full name, as displayed on the card
-                            </small>
-                        </div>
-
-                        <div class="col mb-4">
-                            <label for="Card2">
-                                Credit card Nummber
-                            </label>
-                            <input type="text" class="form-control" placeholder="1234-5678-9012" aria-label="Card2">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col mb-3">
-                            <label for="Card3">
-                                Expiry Date
-                            </label>
-                            <input type="text" class="form-control" aria-label="card3">
-                        </div>
-
-                        <div class="col mb-3">
-                            <label for="Card4">
-                                CVV
-                            </label>
-                            <input type="text" class="form-control" aria-label="Card4">
-                        </div>
-                    </div>
-
-                </div>
-
-                <hr class="mb-4">
-
-                <div class="d-grid gap-2">
-                    <button class="btn btn-primary btn-lg" type="button">
-                        Continue to Checkout
-                    </button>
-                </div>
-
-            </div>
-            <div class="col-md-4 py-3">
-                <div class="row">
-                    <span class="col-12 h4 py-3">Sản phẩm</span>
-                </div>
-                <li class="list-group-item d-flex justify-content-between bg-light py-2">
-                    <div>
-                        <span class="my-0 h-6">Tên sản phẩm</span>
-                    </div>
-                    <span>{{ product.pdtName }}</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between bg-light py-2 border-top">
-                    <div>
-                        <span class="my-0 h-6">Giá tiền</span>
-                    </div>
-                    <span>{{ product.supplyAmt | number: "1.00" }} VND</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between bg-light py-2 border-top">
-                    <div class="text-success">
-                        <h6 class="my-0">Giảm giá</h6>
-                        <small>{{ product.percent }}%</small>
-                    </div>
-                    <span class="text-success">-{{ (product.supplyAmt - product.retailAmt) | number: "1.00" }} VND</span>
-                </li>
-
-
-                <div class="card-footer d-flex justify-content-between">
-                    <span>Tổng cộng (VND)</span>
-                    <strong class="text-orange">{{ product.retailAmt | number: "1.00" }} VND</strong>
-                </div>
-
-                <!-- <form class="card p-2">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Promo code">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-secondary">
-                                Redeem
+                        <div class="text-end mt-2 mt-sm-0">
+                            <button (click)="onSubmit()" class="btn btn-primary">
+                                <fa-icon [icon]="faCartShopping"></fa-icon>
+                                Đặt dịch vụ
                             </button>
                         </div>
                     </div>
-                </form> -->
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div
+                    class="card checkout-order-summary position-relative d-flex flex-column text-break border-pink-horror">
+                    <div class="card-body">
+                        <div class="p-3 bg-light mb-3">
+                            <span class="h4 text-primary">Thông tin đơn hàng</span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-centered mb-0 table-nowrap">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <span class="h-5 text-truncate">Sản phẩm:</span>
+                                        </td>
+                                        <td class="text-end">
+                                            {{ product.pdtName }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="h-5 text-truncate">Giá tiền:</span>
+                                        </td>
+                                        <td class="text-end fw-bold">
+                                            {{ product.supplyAmt| number: "1.00" }} VND
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="h-5 text-truncate">Giảm giá:</span>
+                                        </td>
+                                        <td class="text-end fw-bold">
+                                            -&nbsp;<span class="text-red">{{ (product.supplyAmt - product.retailAmt) | number: "1.00" }} VND</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-light">
+                                        <td>
+                                            <span class="h-5 text-truncate">Tổng cộng:</span>
+                                        </td>
+                                        <td class="text-end fw-bold">
+                                            <span class="text-red-orange">{{ product.retailAmt | number: "1.00" }} VND</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
+                        </div>
+                        <div class="text-center my-3">
+                            <button (click)="onSubmit()" class="btn btn-primary">
+                                <fa-icon [icon]="faCartShopping"></fa-icon>
+                                Đặt dịch vụ
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
+    <!-- end row -->
 </div>
