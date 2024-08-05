@@ -8,6 +8,7 @@ import { ProductService } from '../../../services/product.service';
 import { ValidationUtil } from '../../../utils/validation.util';
 import { environment } from '../../../../../environments/environment';
 import { faArrowRight, faCar, faClock, faCompass, faGlobe, faHotel, faLocationDot, faMoneyCheckDollar, faPlane, faPlusSquare, faTag, faUser } from '@fortawesome/free-solid-svg-icons';
+import { CommonConstant } from '../../../utils/constant/common.constant';
 
 @Component({
     selector: 'app-home',
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit {
     product: Product = {} as Product;
 
     imageUrl: string = environment.imgUrl;
+    defaultImage: string = CommonConstant.DEFAULT_IMAGE;
 
     faMoneyCheckDollar = faMoneyCheckDollar;
     faTag = faTag;

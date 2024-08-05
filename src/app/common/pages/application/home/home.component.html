@@ -72,7 +72,7 @@
                     @for (item of products; track $index) {
                     <div class="swiper-slide"
                         [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)" style="background: linear-gradient(to top, #0f2027, #203a4300, #2c536400),
-                                url('{{ imageUrl + item.filePath }}')
+                                url('{{ (item.filePath === null || item.filePath === undefined) ? defaultImage : (imageUrl + item.filePath) }}')
                                     no-repeat 50% 50% / cover">
                         <span class="sp-code">#{{ item.pdtCode }}</span>
                         <div>
@@ -105,7 +105,7 @@
             <div class="col-sm-6 col-md-4 col-lg-3 mb-5 cursor-pointer d-flex align-items-stretch"
                 [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)">
                 <div class="card">
-                    <img [src]="imageUrl + item.filePath" [alt]="item.pdtName"
+                    <img [src]="(item.filePath === null || item.filePath === undefined) ? defaultImage : (imageUrl + item.filePath)" [alt]="item.pdtName"
                         onerror="this.onerror=null;this.src='./assets/img/not-found.jpg'" class="card-img-top">
                     <div class="card-img-overlay">
                         <span class="badge bg-danger p-2">
@@ -145,7 +145,7 @@
             <div class="col-sm-6 col-md-4 col-lg-3 mb-5 cursor-pointer d-flex align-items-stretch"
                 [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)">
                 <div class="card">
-                    <img [src]="imageUrl + item.filePath" [alt]="item.pdtName"
+                    <img [src]="(item.filePath === null || item.filePath === undefined) ? defaultImage : (imageUrl + item.filePath)" [alt]="item.pdtName"
                         onerror="this.onerror=null;this.src='./assets/img/not-found.jpg'" class="card-img-top">
                     <div class="card-img-overlay">
                         <span class="badge bg-danger p-2">
@@ -185,7 +185,7 @@
             <div class="col-sm-6 col-md-4 col-lg-3 mb-5 cursor-pointer d-flex align-items-stretch"
                 [routerLink]="'/product/' + item.pdtCode + '/' + (item.pdtName | normalizeVi)">
                 <div class="card">
-                    <img [src]="imageUrl + item.filePath" [alt]="item.pdtName"
+                    <img [src]="(item.filePath === null || item.filePath === undefined) ? defaultImage : (imageUrl + item.filePath)" [alt]="item.pdtName"
                         onerror="this.onerror=null;this.src='./assets/img/not-found.jpg'" class="card-img-top">
                     <div class="card-img-overlay">
                         <span class="badge bg-danger p-2">
@@ -252,7 +252,7 @@
             <div class="card position-relative shadow" style="max-width: 370px;">
                 <div class="card-body p-3"
                     [routerLink]="'/product/' + product.pdtCode + '/' + (product.pdtName | normalizeVi)">
-                    <img class="mb-4 mt-2 rounded-2 w-100 cursor-pointer" [src]="imageUrl + product.imageUrl"
+                    <img class="mb-4 mt-2 rounded-2 w-100 cursor-pointer" [src]="(product.filePath === null || product.filePath === undefined) ? defaultImage : (imageUrl + product.imageUrl)"
                         [alt]="product.pdtName" />
                     <div>
                         <span class="fw-medium h-5">{{ product.pdtName }}</span>

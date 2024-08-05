@@ -11,4 +11,6 @@ export class CommonConstant {
 
     static BASE_URL = environment.apiUrl;
     static IMAGE_URL = environment.imgUrl;
+
+    static DEFAULT_IMAGE = './assets/img/not-found.jpg';
 }
